@@ -44,141 +44,79 @@
     opacity: 0.4;
   }
 
-  /* ── NAV ── */
+  /* ── MINIMALIST BUBBLE NAV ── */
   nav {
     position: fixed;
-    top: 0; left: 0; right: 0;
+    top: 1.5rem; 
+    left: 50%;
+    transform: translateX(-50%) translateY(0);
     z-index: 100;
-    padding: 1rem 2rem;
+    padding: 0.5rem 1.5rem;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    background: rgba(13, 27, 42, 0.85);
-    backdrop-filter: blur(100px);
-    border-bottom: 1px solid rgba(201, 168, 76, 0.15);
-    transition: transform 0.3s ease, background 0.3s ease;
-    transform: translateY(0);
+    gap: 2rem;
+    background: rgba(27, 46, 69, 0.4); /* Menggunakan navy-mid transparan */
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(201, 168, 76, 0.25);
+    border-radius: 100px; /* Bentuk Bubble Kapsul */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s;
+    width: max-content;
+    max-width: 90%;
   }
 
   nav.hide {
-    transform: translateY(-110%);
+    transform: translateX(-50%) translateY(-150%);
+    opacity: 0;
   }
 
   nav .logo {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: var(--gold);
-    letter-spacing: 0.05em;
+    display: flex;
+    align-items: center;
+  }
+
+  nav .logo img {
+    height: 32px; /* Ukuran logo disesuaikan lebih minimalis */
+    width: auto;
   }
 
   nav ul {
     list-style: none;
     display: flex;
-    gap: 2rem;
-  }
-
-  nav ul a {
-    color: rgba(245, 240, 232, 0.7);
-    text-decoration: none;
-    font-size: 0.82rem;
-    font-weight: 500;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    transition: color 0.3s;
-  }
-
-  nav ul a:hover { color: var(--gold); }
-
-  .nav-cta {
-    background: var(--gold);
-    color: var(--navy) !important;
-    padding: 0.45rem 1.2rem;
-    border-radius: 2px;
-    font-weight: 600 !important;
-    transition: background 0.3s, transform 0.2s !important;
-  }
-  .nav-cta:hover {
-    background: var(--gold-light) !important;
-    transform: translateY(-1px);
-  }
-
-  /* ── HAMBURGER & MOBILE BUBBLE NAV ── */
-  .hamburger-menu {
-    display: none;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    flex-direction: column;
-    gap: 6px;
-    z-index: 150;
-    padding: 5px;
-  }
-
-  .hamburger-menu span {
-    display: block;
-    width: 25px;
-    height: 2px;
-    background-color: var(--gold);
-    transition: all 0.3s ease-in-out;
-  }
-
-  /* Animasi Hamburger jadi 'X' saat aktif */
-  .hamburger-menu.active span:nth-child(1) {
-    transform: translateY(8px) rotate(45deg);
-  }
-  .hamburger-menu.active span:nth-child(2) {
-    opacity: 0;
-  }
-  .hamburger-menu.active span:nth-child(3) {
-    transform: translateY(-8px) rotate(-45deg);
-  }
-
-  /* Navigasi Gaya Bubble Modern */
-  .mobile-bubble-nav {
-    position: fixed;
-    top: -100%;
-    left: 5%;
-    right: 5%;
-    background: rgba(27, 46, 69, 0.95);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(201, 168, 76, 0.3);
-    padding: 2.5rem 2rem 2rem 2rem;
-    border-radius: 24px;
-    z-index: 90;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-    opacity: 0;
-    text-align: center;
-  }
-
-  .mobile-bubble-nav.show {
-    top: 80px; /* Muncul tepat di bawah navbar utama */
-    opacity: 1;
-  }
-
-  .mobile-bubble-nav ul {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
+    align-items: center;
     gap: 1.5rem;
   }
 
-  .mobile-bubble-nav ul a {
-    color: var(--cream);
+  nav ul a {
+    color: rgba(245, 240, 232, 0.65);
     text-decoration: none;
-    font-size: 1.1rem;
+    font-size: 0.78rem;
     font-weight: 500;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
-    display: block;
-    padding: 0.5rem;
-    transition: color 0.3s;
+    transition: color 0.3s, transform 0.3s;
+    display: inline-block;
   }
 
-  .mobile-bubble-nav ul a:hover, 
-  .mobile-bubble-nav ul a.active {
-    color: var(--gold);
+  nav ul a:hover, nav ul a.active { 
+    color: var(--gold); 
+    transform: translateY(-1px);
+  }
+
+  .nav-cta {
+    background: rgba(201, 168, 76, 0.15);
+    color: var(--gold) !important;
+    padding: 0.45rem 1rem;
+    border-radius: 100px; /* Bubble pill untuk tombol */
+    border: 1px solid rgba(201, 168, 76, 0.4);
+    font-weight: 600 !important;
+    transition: all 0.3s !important;
+  }
+  .nav-cta:hover {
+    background: var(--gold) !important;
+    color: var(--navy) !important;
+    box-shadow: 0 4px 12px rgba(201, 168, 76, 0.2);
   }
 
   /* ── HERO ── */
@@ -187,7 +125,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-items: center;
-    padding: 6rem 6% 3rem;
+    padding: 8rem 6% 3rem; /* Padding atas dinaikkan agar tidak tertutup nav */
     position: relative;
     overflow: hidden;
   }
@@ -321,14 +259,14 @@
     justify-content: center;
     margin-bottom: 1.2rem;
   }
-  .avatar-icon img {
+
+    .avatar-icon img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     border-radius: 50%;
 }
 
-  .avatar-icon svg { width: 60px; height: 60px; fill: var(--gold); opacity: 0.7; }
 
   .photo-name {
     font-family: 'Playfair Display', serif;
@@ -411,59 +349,6 @@
     color: var(--white);
     margin-bottom: 3rem;
     line-height: 1.2;
-  }
-
-  .lang-id,
-  .lang-en {
-    display: none;
-  }
-
-  body.language-id .lang-id,
-  body.language-en .lang-en {
-    display: inline;
-  }
-
-  body.language-id .lang-en,
-  body.language-en .lang-id {
-    display: none;
-  }
-
-  .lang-switcher {
-    display: flex;
-    gap: 0.4rem;
-    align-items: center;
-  }
-
-  .lang-btn {
-    background: transparent;
-    color: rgba(245, 240, 232, 0.75);
-    border: 1px solid rgba(245, 240, 232, 0.2);
-    padding: 0.45rem 0.8rem;
-    border-radius: 100px;
-    cursor: pointer;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.75rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    transition: background 0.2s, color 0.2s, border-color 0.2s;
-  }
-
-  .lang-btn.active,
-  .lang-btn:hover {
-    background: rgba(201, 168, 76, 0.15);
-    color: var(--gold);
-    border-color: rgba(201, 168, 76, 0.35);
-  }
-
-  body.lang-en .lang-id { display: none; }
-  body.lang-en .lang-en { display: inline; }
-  body.lang-id .lang-id { display: inline; }
-  body.lang-id .lang-en { display: none; }
-
-  .nav-right {
-    display: flex;
-    align-items: center;
-    gap: 1.2rem;
   }
 
   /* ── PROFIL ── */
@@ -659,7 +544,7 @@
     transform: translateY(-4px);
   }
 
-  .skill-cat-title {
+  .skill-category-title {
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.75rem;
     letter-spacing: 0.2em;
@@ -1002,72 +887,54 @@
     to { opacity: 1; }
   }
 
-  /* ── RESPONSIVE ── */
+  /* ── RESPONSIVE & MOBILE BUBBLE ── */
   @media (max-width: 768px) {
     .hero {
       grid-template-columns: 1fr;
       text-align: center;
-      padding-top: 5rem;
+      padding-top: 7rem;
     }
     .hero-right { margin-top: 3rem; }
     .hero-contacts { justify-content: center; }
-    
-    nav ul { display: none; } /* Menyembunyikan menu desktop */
-    .hamburger-menu { display: flex; } /* Menampilkan tombol hamburger */
-    
     footer { flex-direction: column; text-align: center; }
     .footer-right { justify-content: center; }
-  }
 
-  /* ── ACTIVE NAV ── */
-  nav ul a.active { color: var(--gold); }
+    /* Pengondisian bubble nav pada layar mobile */
+    nav {
+      top: auto;
+      bottom: 1.5rem; /* Pindah ke bawah agar mudah dijangkau satu tangan */
+      padding: 0.5rem 1rem;
+      gap: 1rem;
+    }
+    nav .logo { display: none; } /* Sembunyikan logo agar ringkas */
+    nav ul { gap: 1rem; }
+    nav ul a { font-size: 0.72rem; letter-spacing: 0.05em; }
+    .nav-cta { padding: 0.35rem 0.75rem; }
+  }
 </style>
 </head>
 <body>
 
+<!-- BUBBLE NAV -->
 <nav>
   <div class="logo">
-    <img src="\Users\muhammad.firedaus.SCBD-DC\Downloads\logo.png" alt="Logo" height="50">
+    <img src="logo.png" alt="Logo">
   </div>
-  <div class="nav-right">
-    <ul>
-      <li><a href="#profil"><span class="lang-id">Profil</span><span class="lang-en">Profile</span></a></li>
-      <li><a href="#pengalaman"><span class="lang-id">Pengalaman</span><span class="lang-en">Experience</span></a></li>
-      <li><a href="#keahlian"><span class="lang-id">Keahlian</span><span class="lang-en">Skills</span></a></li>
-      <li><a href="#proyek"><span class="lang-id">Proyek</span><span class="lang-en">Projects</span></a></li>
-      <li><a href="#pendidikan"><span class="lang-id">Pendidikan</span><span class="lang-en">Education</span></a></li>
-      <li><a href="mailto:ihsaann20@gmail.com" class="nav-cta"><span class="lang-id">Hubungi</span><span class="lang-en">Contact</span></a></li>
-    </ul>
-    
-    <button class="hamburger-menu" id="hamburgerBtn" aria-label="Toggle menu">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-
-    <div class="lang-switcher">
-      <button type="button" class="lang-btn active" data-lang-btn="id">ID</button>
-      <button type="button" class="lang-btn" data-lang-btn="en">EN</button>
-    </div>
-  </div>
+  <ul>
+    <li><a href="#profil">Profil</a></li>
+    <li><a href="#pengalaman">Karir</a></li>
+    <li><a href="#keahlian">Skill</a></li>
+    <li><a href="#proyek">Proyek</a></li>
+    <li><a href="mailto:ihsaann20@gmail.com" class="nav-cta">Hubungi</a></li>
+  </ul>
 </nav>
 
-<div class="mobile-bubble-nav" id="mobileBubbleNav">
-  <ul>
-    <li><a href="#profil" class="mobile-link"><span class="lang-id">Profil</span><span class="lang-en">Profile</span></a></li>
-    <li><a href="#pengalaman" class="mobile-link"><span class="lang-id">Pengalaman</span><span class="lang-en">Experience</span></a></li>
-    <li><a href="#keahlian" class="mobile-link"><span class="lang-id">Keahlian</span><span class="lang-en">Skills</span></a></li>
-    <li><a href="#proyek" class="mobile-link"><span class="lang-id">Proyek</span><span class="lang-en">Projects</span></a></li>
-    <li><a href="#pendidikan" class="mobile-link"><span class="lang-id">Pendidikan</span><span class="lang-en">Education</span></a></li>
-    <li><a href="mailto:ihsaann20@gmail.com" class="mobile-link" style="color: var(--gold); font-weight: bold;"><span class="lang-id">Hubungi</span><span class="lang-en">Contact</span></a></li>
-  </ul>
-</div>
-
+<!-- HERO -->
 <section class="hero" id="home">
   <div class="hero-text">
     <p class="hero-eyebrow">// Project Engineer · Network · Data Center</p>
     <h1 class="hero-name">Ihsan<br><span>Nurrochman</span></h1>
-    <p class="hero-title"><span class="lang-id">Profesional infrastruktur TI dengan keahlian mendalam di data center, jaringan, dan manajemen proyek.</span><span class="lang-en">IT infrastructure professional with deep expertise in data center, networking, and project management.</span></p>
+    <p class="hero-title">Profesional infrastruktur TI dengan keahlian mendalam di data center, jaringan, dan manajemen proyek.</p>
     <div class="hero-contacts">
       <a href="tel:08970629393" class="contact-pill">
         <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
@@ -1100,15 +967,15 @@
         <div class="stats-strip">
           <div class="stat-box">
             <div class="stat-number">7+</div>
-            <div class="stat-label"><span class="lang-id">Tahun Exp</span><span class="lang-en">Years Exp</span></div>
+            <div class="stat-label">Tahun Exp</div>
           </div>
           <div class="stat-box">
             <div class="stat-number">5+</div>
-            <div class="stat-label"><span class="lang-id">Proyek</span><span class="lang-en">Projects</span></div>
+            <div class="stat-label">Proyek</div>
           </div>
           <div class="stat-box">
             <div class="stat-number">3</div>
-            <div class="stat-label"><span class="lang-id">Perusahaan</span><span class="lang-en">Companies</span></div>
+            <div class="stat-label">Perusahaan</div>
           </div>
         </div>
       </div>
@@ -1118,25 +985,25 @@
 
 <div class="divider"></div>
 
+<!-- PROFIL -->
 <section id="profil">
-  <div class="section-label">01 / <span class="lang-id">Profil</span><span class="lang-en">Profile</span></div>
-  <h2 class="section-title"><span class="lang-id">Tentang Saya</span><span class="lang-en">About Me</span></h2>
+  <div class="section-label">01 / Profil</div>
+  <h2 class="section-title">Tentang Saya</h2>
   <div class="profil-card">
     <p class="profil-text">
-      <span class="lang-id">Profesional berpengalaman di bidang <strong style="color:var(--gold)">Managed Service, Network Engineer,</strong> dan <strong style="color:var(--gold)">Project Engineer Data Center</strong> pada lingkungan ISP dan infrastruktur TI. Memiliki keahlian dalam perancangan, implementasi, monitoring, troubleshooting, serta pemeliharaan jaringan dan infrastruktur data center — termasuk routing, switching, TCP/IP, fiber optic, structured cabling, dan sistem pendukung.</span>
-      <span class="lang-en">Experienced professional in Managed Service, Network Engineering, and Data Center Project Engineering within ISP and IT infrastructure environments. Skilled in design, implementation, monitoring, troubleshooting, and maintenance of networks and data center infrastructure including routing, switching, TCP/IP, fiber optic, structured cabling, and supporting systems.</span>
+      Profesional berpengalaman di bidang <strong style="color:var(--gold)">Managed Service, Network Engineer,</strong> dan <strong style="color:var(--gold)">Project Engineer Data Center</strong> pada lingkungan ISP dan infrastruktur TI. Memiliki keahlian dalam perancangan, implementasi, monitoring, troubleshooting, serta pemeliharaan jaringan dan infrastruktur data center — termasuk routing, switching, TCP/IP, fiber optic, structured cabling, dan sistem pendukung.
       <br><br>
-      <span class="lang-id">Berpengalaman dalam pengelolaan proyek, incident handling, preventive maintenance, serta memastikan layanan dan proyek berjalan sesuai SLA, standar kualitas, anggaran, dan jadwal. Memiliki kemampuan analisis, komunikasi, dan koordinasi yang kuat untuk mendukung stabilitas operasional, keberhasilan proyek, dan kepuasan pelanggan.</span>
-      <span class="lang-en">Experienced in project management, incident handling, preventive maintenance, and ensuring services and projects meet SLA, quality standards, budget, and schedule. Possesses strong analytical, communication, and coordination skills to support operational stability, project success, and customer satisfaction.</span>
+      Berpengalaman dalam pengelolaan proyek, incident handling, preventive maintenance, serta memastikan layanan dan proyek berjalan sesuai SLA, standar kualitas, anggaran, dan jadwal. Memiliki kemampuan analisis, komunikasi, dan koordinasi yang kuat untuk mendukung stabilitas operasional, keberhasilan proyek, dan kepuasan pelanggan.
     </p>
   </div>
 </section>
 
 <div class="divider"></div>
 
+<!-- PENGALAMAN -->
 <section id="pengalaman">
-  <div class="section-label">02 / <span class="lang-id">Pengalaman</span><span class="lang-en">Experience</span></div>
-  <h2 class="section-title"><span class="lang-id">Riwayat Pekerjaan</span><span class="lang-en">Work History</span></h2>
+  <div class="section-label">02 / Pengalaman</div>
+  <h2 class="section-title">Riwayat Pekerjaan</h2>
   <div class="timeline">
 
     <div class="timeline-item">
@@ -1148,16 +1015,16 @@
             <div class="exp-company">PT Artha Telekomindo — SCBD Data Center</div>
           </div>
           <div style="display:flex;gap:0.5rem;align-items:center;flex-wrap:wrap">
-            <span class="exp-current"><span class="lang-id">● Aktif</span><span class="lang-en">● Active</span></span>
+            <span class="exp-current">● Aktif</span>
             <span class="exp-period">Nov 2023 — Sekarang</span>
           </div>
         </div>
         <ul class="exp-tasks">
-          <li><span class="lang-id">Merencanakan, mengoordinasikan, dan mengawasi pelaksanaan proyek infrastruktur data center.</span><span class="lang-en">Planning, coordinating, and overseeing the execution of data center infrastructure projects.</span></li>
-          <li><span class="lang-id">Mengelola implementasi instalasi structured cabling, fiber optic, rack, CCTV, access control, dan perangkat pendukung lainnya.</span><span class="lang-en">Managing installation implementation of structured cabling, fiber optic, racks, CCTV, access control, and supporting equipment.</span></li>
-          <li><span class="lang-id">Mengerjakan sertifikasi desain TIA-942 Rated 3 untuk data center kelas enterprise.</span><span class="lang-en">Working on TIA-942 Rated 3 design certification for enterprise-class data center facilities.</span></li>
-          <li><span class="lang-id">Memperbarui layout dan dokumentasi infrastruktur data center secara berkala.</span><span class="lang-en">Regularly updating layouts and documentation for data center infrastructure.</span></li>
-          <li><span class="lang-id">Penyusunan dokumen teknis, Bill of Quantity (BOQ), dan laporan proyek.</span><span class="lang-en">Preparing technical documents, Bill of Quantities (BOQ), and project reports.</span></li>
+          <li>Merencanakan, mengoordinasikan, dan mengawasi pelaksanaan proyek infrastruktur data center.</li>
+          <li>Mengelola implementasi instalasi structured cabling, fiber optic, rack, CCTV, access control, dan perangkat pendukung lainnya.</li>
+          <li>Mengerjakan sertifikasi desain TIA-942 Rated 3 untuk data center kelas enterprise.</li>
+          <li>Memperbarui layout dan dokumentasi infrastruktur data center secara berkala.</li>
+          <li>Penyusunan dokumen teknis, Bill of Quantity (BOQ), dan laporan proyek.</li>
         </ul>
       </div>
     </div>
@@ -1173,11 +1040,11 @@
           <span class="exp-period">Sep 2019 — Nov 2023</span>
         </div>
         <ul class="exp-tasks">
-          <li><span class="lang-id">Troubleshooting jaringan internet, LAN, dan Wi-Fi pada lingkungan ISP skala enterprise.</span><span class="lang-en">Troubleshooting internet, LAN, and Wi-Fi networks in enterprise-scale ISP environments.</span></li>
-          <li><span class="lang-id">Instalasi, terminasi, dan pengujian kabel fiber optic sesuai standar industri.</span><span class="lang-en">Installing, terminating, and testing fiber optic cables according to industry standards.</span></li>
-          <li><span class="lang-id">Penarikan kabel fiber optic aerial maupun duct untuk kebutuhan jaringan.</span><span class="lang-en">Pulling fiber optic cables aerially and through ducts for network requirements.</span></li>
-          <li><span class="lang-id">Troubleshooting koneksi GPON, Metro Ethernet, dan wireless untuk pelanggan korporat.</span><span class="lang-en">Troubleshooting GPON, Metro Ethernet, and wireless connections for corporate clients.</span></li>
-          <li><span class="lang-id">Dokumentasi instalasi, aktivasi layanan, dan hasil pengujian jaringan.</span><span class="lang-en">Documenting installations, service activations, and network test results.</span></li>
+          <li>Troubleshooting jaringan internet, LAN, dan Wi-Fi pada lingkungan ISP skala enterprise.</li>
+          <li>Instalasi, terminasi, dan pengujian kabel fiber optic sesuai standar industri.</li>
+          <li>Penarikan kabel fiber optic aerial maupun duct untuk kebutuhan jaringan.</li>
+          <li>Troubleshooting koneksi GPON, Metro Ethernet, dan wireless untuk pelanggan korporat.</li>
+          <li>Dokumentasi instalasi, aktivasi layanan, dan hasil pengujian jaringan.</li>
         </ul>
       </div>
     </div>
@@ -1193,9 +1060,9 @@
           <span class="exp-period">Nov 2018 — Mei 2019</span>
         </div>
         <ul class="exp-tasks">
-          <li><span class="lang-id">Troubleshooting jaringan internet, LAN, dan Wi-Fi untuk klien managed service.</span><span class="lang-en">Troubleshooting internet, LAN, and Wi-Fi networks for managed service clients.</span></li>
-          <li><span class="lang-id">Konfigurasi routing dan switching pada perangkat jaringan enterprise.</span><span class="lang-en">Configuring routing and switching on enterprise network equipment.</span></li>
-          <li><span class="lang-id">Instalasi dan konfigurasi perangkat Unifi untuk kebutuhan wireless jaringan.</span><span class="lang-en">Installing and configuring Unifi devices for wireless network needs.</span></li>
+          <li>Troubleshooting jaringan internet, LAN, dan Wi-Fi untuk klien managed service.</li>
+          <li>Konfigurasi routing dan switching pada perangkat jaringan enterprise.</li>
+          <li>Instalasi dan konfigurasi perangkat Unifi untuk kebutuhan wireless jaringan.</li>
         </ul>
       </div>
     </div>
@@ -1205,13 +1072,14 @@
 
 <div class="divider"></div>
 
+<!-- KEAHLIAN -->
 <section id="keahlian">
-  <div class="section-label">03 / <span class="lang-id">Keahlian</span><span class="lang-en">Skills</span></div>
-  <h2 class="section-title"><span class="lang-id">Keterampilan Teknis</span><span class="lang-en">Technical Skills</span></h2>
+  <div class="section-label">03 / Keahlian</div>
+  <h2 class="section-title">Keterampilan Teknis</h2>
   <div class="skills-grid">
 
     <div class="skill-category">
-      <div class="skill-cat-title">Infrastruktur & Jaringan</div>
+      <div class="skill-category-title">Infrastruktur & Jaringan</div>
       <div class="skill-item">
         <div class="skill-name-row"><span class="skill-name">Fiber Optic (Instalasi & Terminasi)</span><span class="skill-pct">95%</span></div>
         <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="95"></div></div>
@@ -1235,7 +1103,7 @@
     </div>
 
     <div class="skill-category">
-      <div class="skill-cat-title">Data Center & Proyek</div>
+      <div class="skill-category-title">Data Center & Proyek</div>
       <div class="skill-item">
         <div class="skill-name-row"><span class="skill-name">Rack Design & Implementation</span><span class="skill-pct">92%</span></div>
         <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="92"></div></div>
@@ -1259,7 +1127,7 @@
     </div>
 
     <div class="skill-category">
-      <div class="skill-cat-title">Tools & Software</div>
+      <div class="skill-category-title">Tools & Software</div>
       <div class="skill-item">
         <div class="skill-name-row"><span class="skill-name">AutoCAD</span><span class="skill-pct">80%</span></div>
         <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="80"></div></div>
@@ -1283,9 +1151,10 @@
 
 <div class="divider"></div>
 
+<!-- PROYEK -->
 <section id="proyek">
-  <div class="section-label">04 / <span class="lang-id">Proyek</span><span class="lang-en">Projects</span></div>
-  <h2 class="section-title"><span class="lang-id">Proyek Unggulan</span><span class="lang-en">Selected Projects</span></h2>
+  <div class="section-label">04 / Proyek</div>
+  <h2 class="section-title">Proyek Unggulan</h2>
   <div class="projects-grid">
 
     <div class="project-card">
@@ -1328,9 +1197,10 @@
 
 <div class="divider"></div>
 
+<!-- SERTIFIKASI -->
 <section id="sertifikasi">
-  <div class="section-label">05 / <span class="lang-id">Sertifikasi & Kompetensi</span><span class="lang-en">Certifications & Competencies</span></div>
-  <h2 class="section-title"><span class="lang-id">Area Keahlian Utama</span><span class="lang-en">Core Competencies</span></h2>
+  <div class="section-label">05 / Sertifikasi & Kompetensi</div>
+  <h2 class="section-title">Area Keahlian Utama</h2>
   <div class="cert-list">
     <div class="cert-item">
       <div class="cert-icon">
@@ -1373,9 +1243,10 @@
 
 <div class="divider"></div>
 
+<!-- PENDIDIKAN -->
 <section id="pendidikan">
-  <div class="section-label">06 / <span class="lang-id">Pendidikan</span><span class="lang-en">Education</span></div>
-  <h2 class="section-title"><span class="lang-id">Latar Belakang Akademik</span><span class="lang-en">Academic Background</span></h2>
+  <div class="section-label">06 / Pendidikan</div>
+  <h2 class="section-title">Latar Belakang Akademik</h2>
   <div class="edu-grid">
     <div class="edu-card">
       <div class="edu-icon">
@@ -1396,6 +1267,7 @@
   </div>
 </section>
 
+<!-- FOOTER -->
 <footer>
   <div class="footer-left">
     <div class="footer-name">Ihsan Nurrochman</div>
@@ -1404,7 +1276,7 @@
   <div class="footer-right">
     <a href="mailto:ihsaann20@gmail.com" class="btn-primary">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-      <span class="lang-id">Kirim Email</span><span class="lang-en">Send Email</span>
+      Kirim Email
     </a>
     <a href="https://www.linkedin.com/in/ihsan-nurrochman-09a615151" target="_blank" class="btn-secondary">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
@@ -1413,12 +1285,13 @@
   </div>
 </footer>
 
+<!-- SCROLL TO TOP -->
 <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
   <svg viewBox="0 0 24 24"><path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/></svg>
 </button>
 
 <script>
-  // ── Scroll-to-top & Navbar Toggle Behavior ──
+  // ── Scroll & Hide-Show Nav ──
   const nav = document.querySelector('nav');
   const scrollBtn = document.getElementById('scrollTop');
   let lastScrollY = window.scrollY;
@@ -1427,8 +1300,8 @@
     const currentScroll = window.scrollY;
     scrollBtn.classList.toggle('show', currentScroll > 400);
 
-    // Mencegah navbar sembunyi kalau menu bubble lagi kebuka
-    if (!mobileBubbleNav.classList.contains('show')) {
+    // Pada desktop, sembunyikan nav saat scroll ke bawah, munculkan saat scroll ke atas
+    if (window.innerWidth > 768) {
       if (currentScroll > lastScrollY && currentScroll > 120) {
         nav.classList.add('hide');
       } else {
@@ -1436,25 +1309,6 @@
       }
     }
     lastScrollY = currentScroll;
-  });
-
-  // ── JAVASCRIPT UNTUK HAMBURGER & MOBILE BUBBLE NAV ──
-  const hamburgerBtn = document.getElementById('hamburgerBtn');
-  const mobileBubbleNav = document.getElementById('mobileBubbleNav');
-  const mobileLinks = document.querySelectorAll('.mobile-link');
-
-  // Logic Buka - Tutup Menu Bubble
-  hamburgerBtn.addEventListener('click', () => {
-    hamburgerBtn.classList.toggle('active');
-    mobileBubbleNav.classList.toggle('show');
-  });
-
-  // Otomatis tutup menu bubble kalau salah satu link diklik
-  mobileLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      hamburgerBtn.classList.remove('active');
-      mobileBubbleNav.classList.remove('show');
-    });
   });
 
   // ── Intersection Observer for animations ──
@@ -1487,14 +1341,9 @@
   window.addEventListener('scroll', () => {
     let current = '';
     sections.forEach(sec => {
-      if (window.scrollY >= sec.offsetTop - 120) current = sec.getAttribute('id');
+      if (window.scrollY >= sec.offsetTop - 200) current = sec.getAttribute('id');
     });
     navLinks.forEach(a => {
-      a.classList.remove('active');
-      if (a.getAttribute('href') === '#' + current) a.classList.add('active');
-    });
-    // Samakan status active ke link bubble mobile
-    mobileLinks.forEach(a => {
       a.classList.remove('active');
       if (a.getAttribute('href') === '#' + current) a.classList.add('active');
     });
@@ -1504,33 +1353,6 @@
   document.querySelectorAll('.project-card').forEach((card, i) => {
     card.style.transitionDelay = (i * 0.1) + 's';
   });
-
-  // ── Language switcher ──
-  const langButtons = document.querySelectorAll('[data-lang-btn]');
-  function setLanguage(lang) {
-    const normalizedLang = lang === 'en' ? 'en' : 'id';
-    document.documentElement.lang = normalizedLang;
-    document.body.classList.remove('language-id', 'language-en', 'lang-id', 'lang-en');
-    document.body.classList.add('language-' + normalizedLang);
-    langButtons.forEach(btn => btn.classList.toggle('active', btn.dataset.langBtn === normalizedLang));
-    try {
-      localStorage.setItem('preferredLang', normalizedLang);
-    } catch (error) {
-      // localStorage may be unavailable for local file pages in some browsers
-    }
-  }
-
-  function initLanguageSwitcher() {
-    const savedLang = localStorage.getItem('preferredLang') || 'id';
-    setLanguage(savedLang);
-    langButtons.forEach(btn => btn.addEventListener('click', () => setLanguage(btn.dataset.langBtn)));
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initLanguageSwitcher);
-  } else {
-    initLanguageSwitcher();
-  }
 </script>
 </body>
 </html>
