@@ -1,1358 +1,263 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="id" data-t="light">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ihsan Nurrochman — CV </title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ihsan Nurrochman — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  :root {
-    --navy: #0d1b2a;
-    --navy-mid: #1b2e45;
-    --navy-light: #243b55;
-    --gold: #c9a84c;
-    --gold-light: #e0c070;
-    --cream: #f5f0e8;
-    --cream-dark: #e8e0d0;
-    --text-dark: #1a1a2e;
-    --text-mid: #3d4a5c;
-    --text-light: #6b7a8d;
-    --white: #ffffff;
-    --accent: #2e86ab;
-    --accent-light: #4fa8cc;
-  }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--navy);
-    color: var(--cream);
-    overflow-x: hidden;
-  }
-
-  /* ── NOISE TEXTURE OVERLAY ── */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-    pointer-events: none;
-    z-index: 9999;
-    opacity: 0.4;
-  }
-
-  /* ── MINIMALIST BUBBLE NAV ── */
-  nav {
-    position: fixed;
-    top: 1.5rem; 
-    left: 50%;
-    transform: translateX(-50%) translateY(0);
-    z-index: 100;
-    padding: 0.5rem 1.5rem;
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-    background: rgba(27, 46, 69, 0.4); /* Menggunakan navy-mid transparan */
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(201, 168, 76, 0.25);
-    border-radius: 100px; /* Bentuk Bubble Kapsul */
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s;
-    width: max-content;
-    max-width: 90%;
-  }
-
-  nav.hide {
-    transform: translateX(-50%) translateY(-150%);
-    opacity: 0;
-  }
-
-  nav .logo {
-    display: flex;
-    align-items: center;
-  }
-
-  nav .logo img {
-    height: 32px; /* Ukuran logo disesuaikan lebih minimalis */
-    width: auto;
-  }
-
-  nav ul {
-    list-style: none;
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-  }
-
-  nav ul a {
-    color: rgba(245, 240, 232, 0.65);
-    text-decoration: none;
-    font-size: 0.78rem;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    transition: color 0.3s, transform 0.3s;
-    display: inline-block;
-  }
-
-  nav ul a:hover, nav ul a.active { 
-    color: var(--gold); 
-    transform: translateY(-1px);
-  }
-
-  .nav-cta {
-    background: rgba(201, 168, 76, 0.15);
-    color: var(--gold) !important;
-    padding: 0.45rem 1rem;
-    border-radius: 100px; /* Bubble pill untuk tombol */
-    border: 1px solid rgba(201, 168, 76, 0.4);
-    font-weight: 600 !important;
-    transition: all 0.3s !important;
-  }
-  .nav-cta:hover {
-    background: var(--gold) !important;
-    color: var(--navy) !important;
-    box-shadow: 0 4px 12px rgba(201, 168, 76, 0.2);
-  }
-
-  /* ── HERO ── */
-  .hero {
-    min-height: 100vh;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
-    padding: 8rem 6% 3rem; /* Padding atas dinaikkan agar tidak tertutup nav */
-    position: relative;
-    overflow: hidden;
-  }
-
-  .hero::after {
-    content: '';
-    position: absolute;
-    right: -15%;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 65%;
-    height: 100%;
-    background: radial-gradient(ellipse at center, rgba(201, 168, 76, 0.07) 0%, transparent 70%);
-    pointer-events: none;
-  }
-
-  .hero-text { z-index: 2; }
-
-  .hero-eyebrow {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.78rem;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 1.2rem;
-    opacity: 0;
-    animation: fadeUp 0.8s ease 0.2s forwards;
-  }
-
-  .hero-name {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(3rem, 6vw, 5.5rem);
-    font-weight: 900;
-    line-height: 1.05;
-    color: var(--white);
-    opacity: 0;
-    animation: fadeUp 0.8s ease 0.4s forwards;
-  }
-
-  .hero-name span { color: var(--gold); }
-
-  .hero-title {
-    margin-top: 1.5rem;
-    font-size: 1.15rem;
-    font-weight: 300;
-    color: rgba(245, 240, 232, 0.65);
-    line-height: 1.7;
-    max-width: 420px;
-    opacity: 0;
-    animation: fadeUp 0.8s ease 0.6s forwards;
-  }
-
-  .hero-contacts {
-    margin-top: 2.5rem;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    opacity: 0;
-    animation: fadeUp 0.8s ease 0.8s forwards;
-  }
-
-  .contact-pill {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    background: rgba(201, 168, 76, 0.1);
-    border: 1px solid rgba(201, 168, 76, 0.25);
-    border-radius: 100px;
-    padding: 0.45rem 1rem;
-    font-size: 0.82rem;
-    color: var(--cream);
-    text-decoration: none;
-    transition: background 0.3s, border-color 0.3s, transform 0.2s;
-  }
-
-  .contact-pill:hover {
-    background: rgba(201, 168, 76, 0.2);
-    border-color: var(--gold);
-    transform: translateY(-2px);
-  }
-
-  .contact-pill svg { width: 14px; height: 14px; fill: var(--gold); flex-shrink: 0; }
-
-  .hero-right {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 2;
-    opacity: 0;
-    animation: fadeIn 1s ease 0.5s forwards;
-  }
-
-  .photo-frame {
-    position: relative;
-    width: 320px;
-    height: 380px;
-  }
-
-  .photo-frame::before {
-    content: '';
-    position: absolute;
-    inset: -12px;
-    border: 1.5px solid rgba(201, 168, 76, 0.3);
-    border-radius: 4px;
-    transform: rotate(3deg);
-    transition: transform 0.4s;
-  }
-
-  .photo-frame:hover::before { transform: rotate(0deg); }
-
-  .photo-placeholder {
-    width: 100%;
-    height: 100%;
-    border-radius: 4px;
-    background: linear-gradient(145deg, var(--navy-mid), var(--navy-light));
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid rgba(201, 168, 76, 0.2);
-    overflow: hidden;
-  }
-
-  .avatar-icon {
-    width: 110px;
-    height: 110px;
-    background: rgba(201, 168, 76, 0.1);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 1.2rem;
-  }
-
-    .avatar-icon img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 50%;
-}
-
-
-  .photo-name {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.3rem;
-    color: var(--gold);
-    text-align: center;
-  }
-
-  .photo-role {
-    font-size: 0.78rem;
-    color: rgba(245, 240, 232, 0.5);
-    text-align: center;
-    margin-top: 0.3rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-  }
-
-  .stats-strip {
-    margin-top: 1.5rem;
-    display: flex;
-    gap: 0.8rem;
-    width: 100%;
-    padding: 0 0.5rem;
-  }
-
-  .stat-box {
-    flex: 1;
-    background: rgba(13, 27, 42, 0.6);
-    border: 1px solid rgba(201, 168, 76, 0.15);
-    border-radius: 4px;
-    padding: 0.6rem 0.4rem;
-    text-align: center;
-  }
-
-  .stat-number {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 1.4rem;
-    font-weight: 500;
-    color: var(--gold);
-  }
-
-  .stat-label {
-    font-size: 0.62rem;
-    color: rgba(245, 240, 232, 0.45);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    margin-top: 0.1rem;
-  }
-
-  /* ── SECTION BASE ── */
-  section {
-    padding: 6rem 6%;
-  }
-
-  .section-label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.72rem;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 0.8rem;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
-
-  .section-label::after {
-    content: '';
-    flex: 1;
-    max-width: 60px;
-    height: 1px;
-    background: var(--gold);
-    opacity: 0.4;
-  }
-
-  .section-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(2rem, 4vw, 3rem);
-    font-weight: 700;
-    color: var(--white);
-    margin-bottom: 3rem;
-    line-height: 1.2;
-  }
-
-  /* ── PROFIL ── */
-  #profil {
-    background: var(--navy);
-  }
-
-  .profil-card {
-    background: linear-gradient(135deg, var(--navy-mid), var(--navy-light));
-    border: 1px solid rgba(201, 168, 76, 0.15);
-    border-radius: 8px;
-    padding: 3rem;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .profil-card::before {
-    content: '"';
-    position: absolute;
-    top: -1rem;
-    left: 2rem;
-    font-family: 'Playfair Display', serif;
-    font-size: 10rem;
-    color: rgba(201, 168, 76, 0.06);
-    line-height: 1;
-    pointer-events: none;
-  }
-
-  .profil-text {
-    font-size: 1.05rem;
-    line-height: 1.9;
-    color: rgba(245, 240, 232, 0.8);
-    position: relative;
-    z-index: 1;
-  }
-
-  /* ── PENGALAMAN ── */
-  #pengalaman {
-    background: linear-gradient(180deg, var(--navy) 0%, #0a1520 100%);
-  }
-
-  .timeline {
-    position: relative;
-    padding-left: 2rem;
-  }
-
-  .timeline::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 1px;
-    background: linear-gradient(180deg, var(--gold) 0%, rgba(201, 168, 76, 0.1) 100%);
-  }
-
-  .timeline-item {
-    position: relative;
-    margin-bottom: 3.5rem;
-    opacity: 0;
-    transform: translateX(-20px);
-    transition: opacity 0.6s, transform 0.6s;
-  }
-
-  .timeline-item.visible {
-    opacity: 1;
-    transform: translateX(0);
-  }
-
-  .timeline-dot {
-    position: absolute;
-    left: -2.4rem;
-    top: 0.6rem;
-    width: 14px;
-    height: 14px;
-    background: var(--gold);
-    border-radius: 50%;
-    box-shadow: 0 0 0 4px rgba(201, 168, 76, 0.15), 0 0 20px rgba(201, 168, 76, 0.3);
-  }
-
-  .timeline-dot.current {
-    background: var(--gold-light);
-    animation: pulse 2s infinite;
-  }
-
-  @keyframes pulse {
-    0%, 100% { box-shadow: 0 0 0 4px rgba(201, 168, 76, 0.15), 0 0 20px rgba(201, 168, 76, 0.3); }
-    50% { box-shadow: 0 0 0 8px rgba(201, 168, 76, 0.1), 0 0 30px rgba(201, 168, 76, 0.5); }
-  }
-
-  .exp-card {
-    background: var(--navy-mid);
-    border: 1px solid rgba(201, 168, 76, 0.12);
-    border-radius: 6px;
-    padding: 2rem;
-    transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
-    cursor: pointer;
-  }
-
-  .exp-card:hover {
-    border-color: rgba(201, 168, 76, 0.4);
-    transform: translateY(-3px);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
-  }
-
-  .exp-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
-
-  .exp-role {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.3rem;
-    font-weight: 700;
-    color: var(--white);
-  }
-
-  .exp-company {
-    font-size: 0.88rem;
-    color: var(--gold);
-    margin-top: 0.25rem;
-    font-weight: 500;
-  }
-
-  .exp-period {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.75rem;
-    color: rgba(245, 240, 232, 0.45);
-    background: rgba(13, 27, 42, 0.5);
-    padding: 0.35rem 0.8rem;
-    border-radius: 100px;
-    white-space: nowrap;
-    border: 1px solid rgba(201, 168, 76, 0.1);
-  }
-
-  .exp-current {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.7rem;
-    color: #4ade80;
-    background: rgba(74, 222, 128, 0.1);
-    padding: 0.3rem 0.8rem;
-    border-radius: 100px;
-    border: 1px solid rgba(74, 222, 128, 0.2);
-  }
-
-  .exp-tasks {
-    margin-top: 1.5rem;
-    list-style: none;
-  }
-
-  .exp-tasks li {
-    position: relative;
-    padding-left: 1.4rem;
-    margin-bottom: 0.65rem;
-    font-size: 0.9rem;
-    color: rgba(245, 240, 232, 0.72);
-    line-height: 1.6;
-  }
-
-  .exp-tasks li::before {
-    content: '›';
-    position: absolute;
-    left: 0;
-    color: var(--gold);
-    font-size: 1.1rem;
-    line-height: 1.4;
-  }
-
-  /* ── SKILLS ── */
-  #keahlian {
-    background: var(--navy);
-  }
-
-  .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
-  }
-
-  .skill-category {
-    background: var(--navy-mid);
-    border: 1px solid rgba(201, 168, 76, 0.12);
-    border-radius: 6px;
-    padding: 1.8rem;
-    transition: border-color 0.3s, transform 0.3s;
-  }
-
-  .skill-category:hover {
-    border-color: rgba(201, 168, 76, 0.35);
-    transform: translateY(-4px);
-  }
-
-  .skill-category-title {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.75rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 1.2rem;
-    padding-bottom: 0.8rem;
-    border-bottom: 1px solid rgba(201, 168, 76, 0.15);
-  }
-
-  .skill-item {
-    display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
-    margin-bottom: 1rem;
-  }
-
-  .skill-item:last-child { margin-bottom: 0; }
-
-  .skill-name-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .skill-name {
-    font-size: 0.88rem;
-    color: rgba(245, 240, 232, 0.85);
-  }
-
-  .skill-pct {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.72rem;
-    color: var(--gold);
-  }
-
-  .skill-bar-bg {
-    height: 3px;
-    background: rgba(245, 240, 232, 0.08);
-    border-radius: 100px;
-    overflow: hidden;
-  }
-
-  .skill-bar-fill {
-    height: 100%;
-    background: linear-gradient(90deg, var(--gold), var(--gold-light));
-    border-radius: 100px;
-    width: 0;
-    transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  /* ── PROJECTS ── */
-  #proyek {
-    background: linear-gradient(180deg, var(--navy) 0%, #0a1520 100%);
-  }
-
-  .projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
-  }
-
-  .project-card {
-    background: var(--navy-mid);
-    border: 1px solid rgba(201, 168, 76, 0.12);
-    border-radius: 6px;
-    padding: 2rem;
-    position: relative;
-    overflow: hidden;
-    transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: border-color 0.3s, transform 0.6s, box-shadow 0.3s, opacity 0.6s;
-  }
-
-  .project-card.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  .project-card:hover {
-    border-color: rgba(201, 168, 76, 0.4);
-    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
-  }
-
-  .project-year {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.7rem;
-    color: var(--gold);
-    letter-spacing: 0.15em;
-    margin-bottom: 0.8rem;
-  }
-
-  .project-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.1rem;
-    color: var(--white);
-    line-height: 1.4;
-    margin-bottom: 0.8rem;
-  }
-
-  .project-type {
-    display: inline-block;
-    font-size: 0.72rem;
-    color: rgba(245, 240, 232, 0.5);
-    background: rgba(245, 240, 232, 0.05);
-    padding: 0.25rem 0.7rem;
-    border-radius: 100px;
-    border: 1px solid rgba(245, 240, 232, 0.1);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
-
-  .project-number {
-    position: absolute;
-    bottom: 1.5rem;
-    right: 1.5rem;
-    font-family: 'Playfair Display', serif;
-    font-size: 3.5rem;
-    font-weight: 900;
-    color: rgba(201, 168, 76, 0.06);
-    line-height: 1;
-    pointer-events: none;
-  }
-
-  /* ── PENDIDIKAN ── */
-  #pendidikan {
-    background: var(--navy);
-  }
-
-  .edu-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
-  }
-
-  .edu-card {
-    background: var(--navy-mid);
-    border: 1px solid rgba(201, 168, 76, 0.12);
-    border-radius: 6px;
-    padding: 2rem;
-    transition: border-color 0.3s, transform 0.3s;
-  }
-
-  .edu-card:hover {
-    border-color: rgba(201, 168, 76, 0.35);
-    transform: translateY(-4px);
-  }
-
-  .edu-icon {
-    width: 44px;
-    height: 44px;
-    background: rgba(201, 168, 76, 0.1);
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 1.2rem;
-  }
-
-  .edu-icon svg { width: 24px; height: 24px; fill: var(--gold); }
-
-  .edu-degree {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.1rem;
-    color: var(--white);
-    margin-bottom: 0.4rem;
-  }
-
-  .edu-school {
-    font-size: 0.88rem;
-    color: var(--gold);
-    margin-bottom: 0.3rem;
-  }
-
-  .edu-year {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.75rem;
-    color: rgba(245, 240, 232, 0.4);
-  }
-
-  /* ── SERTIFIKASI (tambahan) ── */
-  #sertifikasi {
-    background: linear-gradient(180deg, var(--navy) 0%, #0a1520 100%);
-  }
-
-  .cert-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 1rem;
-  }
-
-  .cert-item {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    background: var(--navy-mid);
-    border: 1px solid rgba(201, 168, 76, 0.1);
-    border-radius: 6px;
-    padding: 1.2rem 1.5rem;
-    transition: border-color 0.3s, transform 0.3s;
-  }
-
-  .cert-item:hover {
-    border-color: rgba(201, 168, 76, 0.35);
-    transform: translateX(4px);
-  }
-
-  .cert-icon {
-    width: 38px;
-    height: 38px;
-    background: rgba(201, 168, 76, 0.1);
-    border-radius: 6px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-  }
-
-  .cert-icon svg { width: 20px; height: 20px; fill: var(--gold); }
-
-  .cert-name {
-    font-size: 0.88rem;
-    color: rgba(245, 240, 232, 0.82);
-    line-height: 1.5;
-  }
-
-  /* ── FOOTER / CTA ── */
-  footer {
-    background: var(--navy-mid);
-    border-top: 1px solid rgba(201, 168, 76, 0.12);
-    padding: 4rem 6%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: gap;
-    gap: 2rem;
-  }
-
-  .footer-left .footer-name {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: var(--white);
-  }
-
-  .footer-left .footer-role {
-    font-size: 0.85rem;
-    color: rgba(245, 240, 232, 0.45);
-    margin-top: 0.3rem;
-  }
-
-  .footer-right {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
-
-  .btn-primary {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    background: var(--gold);
-    color: var(--navy);
-    padding: 0.75rem 1.8rem;
-    border-radius: 2px;
-    font-weight: 600;
-    font-size: 0.85rem;
-    text-decoration: none;
-    transition: background 0.3s, transform 0.2s;
-    letter-spacing: 0.05em;
-  }
-
-  .btn-primary:hover {
-    background: var(--gold-light);
-    transform: translateY(-2px);
-  }
-
-  .btn-secondary {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    background: transparent;
-    color: var(--cream);
-    padding: 0.75rem 1.8rem;
-    border-radius: 2px;
-    font-weight: 500;
-    font-size: 0.85rem;
-    text-decoration: none;
-    border: 1px solid rgba(245, 240, 232, 0.2);
-    transition: border-color 0.3s, transform 0.2s;
-  }
-
-  .btn-secondary:hover {
-    border-color: var(--gold);
-    color: var(--gold);
-    transform: translateY(-2px);
-  }
-
-  /* ── SCROLL TO TOP ── */
-  .scroll-top {
-    position: fixed;
-    bottom: 2rem;
-    right: 2rem;
-    width: 44px;
-    height: 44px;
-    background: var(--gold);
-    border-radius: 2px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    opacity: 0;
-    transform: translateY(10px);
-    transition: opacity 0.3s, transform 0.3s;
-    z-index: 50;
-    border: none;
-  }
-
-  .scroll-top.show { opacity: 1; transform: translateY(0); }
-  .scroll-top:hover { background: var(--gold-light); }
-  .scroll-top svg { width: 18px; height: 18px; fill: var(--navy); }
-
-  /* ── DIVIDER ── */
-  .divider {
-    width: 100%;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(201, 168, 76, 0.2), transparent);
-    margin: 0;
-  }
-
-  /* ── ANIMATIONS ── */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
-
-  /* ── RESPONSIVE & MOBILE BUBBLE ── */
-  @media (max-width: 768px) {
-    .hero {
-      grid-template-columns: 1fr;
-      text-align: center;
-      padding-top: 7rem;
-    }
-    .hero-right { margin-top: 3rem; }
-    .hero-contacts { justify-content: center; }
-    footer { flex-direction: column; text-align: center; }
-    .footer-right { justify-content: center; }
-
-    /* Pengondisian bubble nav pada layar mobile */
-    nav {
-      top: auto;
-      bottom: 1.5rem; /* Pindah ke bawah agar mudah dijangkau satu tangan */
-      padding: 0.5rem 1rem;
-      gap: 1rem;
-    }
-    nav .logo { display: none; } /* Sembunyikan logo agar ringkas */
-    nav ul { gap: 1rem; }
-    nav ul a { font-size: 0.72rem; letter-spacing: 0.05em; }
-    .nav-cta { padding: 0.35rem 0.75rem; }
-  }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#fff;--bg2:#f6f7f9;--ink:#111827;--mu:#6b7280;--ln:#e5e7eb;--card:#fff;--inv:#fff;--sh:0 10px 40px rgba(17,24,39,.08)}
+[data-t=dark]{--bg:#0b0f19;--bg2:#121826;--ink:#f3f4f6;--mu:#9ca3af;--ln:#263042;--card:#111827;--inv:#0b0f19;--sh:0 10px 40px rgba(0,0,0,.5)}
+html{scroll-behavior:smooth}
+body{font-family:'Poppins',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;overflow-x:hidden;transition:background .4s,color .4s}
+a{color:inherit;text-decoration:none}button{font-family:inherit}
+#ld{position:fixed;inset:0;z-index:999;background:var(--bg);display:grid;place-content:center;text-align:center;transition:opacity .6s,visibility .6s}
+#ld.off{opacity:0;visibility:hidden}
+#ld b{font-size:2rem;font-weight:600;display:block}#ld small{letter-spacing:.3em;font-size:.65rem;color:var(--mu)}
+#ld i{display:block;height:2px;background:var(--ink);margin:1.4rem auto 0;width:0;animation:ldb 1.4s forwards}@keyframes ldb{to{width:150px}}
+nav{position:fixed;top:16px;left:50%;transform:translateX(-50%);width:min(1100px,92%);z-index:100;display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.65rem 1.6rem;border-radius:100px;background:color-mix(in srgb,var(--card) 85%,transparent);backdrop-filter:blur(14px);box-shadow:var(--sh)}
+.lg{font-weight:700;letter-spacing:-.02em}
+.lk{display:flex;gap:1.8rem;list-style:none}.lk a{font-size:.82rem;color:var(--mu);transition:.2s}.lk a.on,.lk a:hover{color:var(--ink);font-weight:600}
+.tools{display:flex;gap:.5rem}.tools button{background:none;border:1px solid var(--ln);color:var(--ink);border-radius:100px;min-width:34px;height:34px;padding:0 .7rem;font-size:.75rem;cursor:pointer}
+.tools button:hover{background:var(--bg2)}
+section{padding:7rem 4%;max-width:1150px;margin:0 auto}
+.hd{text-align:center;margin-bottom:3.5rem}.hd small{font-size:.68rem;letter-spacing:.3em;color:var(--mu);text-transform:uppercase}
+.hd h2{font-size:clamp(2rem,4.5vw,3rem);font-weight:700;letter-spacing:-.03em;line-height:1.15}
+.btn{display:inline-flex;gap:.6rem;align-items:center;padding:.85rem 1.7rem;border-radius:10px;font-size:.85rem;font-weight:500;border:1px solid var(--ink);cursor:pointer;transition:.25s;background:none;color:var(--ink)}
+.btn.d{background:var(--ink);color:var(--inv)}.btn:hover{transform:translateY(-2px);box-shadow:var(--sh)}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:3rem;align-items:center;min-height:100vh;padding-top:6rem}
+.hero h1{font-size:clamp(2.8rem,6vw,4.6rem);font-weight:700;letter-spacing:-.04em;line-height:1.05}
+.hero h1 span{background:linear-gradient(90deg,var(--ink),var(--mu));-webkit-background-clip:text;background-clip:text;color:transparent}
+.ty{height:2rem;margin:1rem 0;font-size:1.15rem;color:var(--mu);font-weight:500}.ty::after{content:'';border-right:2px solid var(--ink);margin-left:3px;animation:bk 1s infinite}@keyframes bk{50%{opacity:0}}
+.hero p{color:var(--mu);max-width:480px;margin-bottom:2rem;font-size:.95rem}
+.soc{display:flex;gap:.7rem;margin-top:2.5rem;padding-top:1.6rem;border-top:1px solid var(--ln);max-width:480px}
+.soc a{width:38px;height:38px;border:1px solid var(--ln);border-radius:10px;display:grid;place-items:center;font-size:.75rem;font-weight:600;transition:.2s}.soc a:hover{background:var(--ink);color:var(--inv)}
+.pw{position:relative;justify-self:center;width:min(400px,86%)}
+.pw>img{width:100%;aspect-ratio:1;border-radius:50%;object-fit:cover;border:10px solid var(--card);box-shadow:var(--sh);display:block}
+.ab{display:grid;grid-template-columns:.8fr 1.2fr;gap:3rem;align-items:start}
+.ab>img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:22px;box-shadow:var(--sh)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+.ab h3{font-size:1rem;padding-bottom:.6rem;border-bottom:1px solid var(--ln);margin-bottom:.8rem}.ab p{font-size:.85rem;color:var(--mu)}
+.pd{margin:2rem 0 0;border-left:3px solid var(--ink);padding-left:1rem}.pd h3{border:0;margin:0}
+.dg{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem 2rem;margin-top:1rem}
+.dg small{display:block;font-size:.62rem;letter-spacing:.14em;color:var(--mu);text-transform:uppercase}.dg b{font-size:.85rem;font-weight:600;word-break:break-word}
+.mq{overflow:hidden;padding:1.5rem 0;user-select:none}.mq div{display:flex;width:max-content;font-size:clamp(2.2rem,6vw,4.5rem);font-weight:700;letter-spacing:-.04em;color:var(--ln);animation:mq 28s linear infinite;white-space:nowrap}
+.mq div.r{animation-direction:reverse}@keyframes mq{to{transform:translateX(-50%)}}
+.tl{position:relative;display:grid;gap:2.5rem}
+.tl::before{content:'';position:absolute;left:50%;top:0;bottom:0;width:2px;background:var(--ink);transform:translateX(-1px)}
+.it{position:relative;width:50%;padding-right:3rem;text-align:right}.it:nth-child(even){margin-left:50%;padding:0 0 0 3rem;text-align:left}
+.it::after{content:'';position:absolute;top:2rem;right:-8px;width:16px;height:16px;border-radius:50%;border:3px solid var(--ink);background:var(--bg)}.it:nth-child(even)::after{right:auto;left:-8px}
+.cd{background:var(--card);border:1px solid var(--ln);border-radius:16px;padding:1.6rem;transition:.3s}.cd:hover{border-color:var(--ink);box-shadow:var(--sh)}
+.cd .y{font-size:.68rem;font-weight:600;letter-spacing:.08em;color:var(--mu)}.cd h3{font-size:1.2rem;margin:.2rem 0}.cd .c{font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.8rem}
+.cd ul{list-style:none;font-size:.8rem;color:var(--mu);display:grid;gap:.4rem}.cd li b{color:var(--ink);font-weight:600}
+.tg{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1rem;justify-content:inherit}.tg span{font-size:.62rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;background:var(--bg2);padding:.3rem .7rem;border-radius:6px}
+.sk{display:grid;grid-template-columns:.8fr 2fr;gap:2rem;padding:2rem 0;border-top:1px solid var(--ln)}.sk h3{font-size:1.05rem}.sk p{font-size:.8rem;color:var(--mu)}
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:.8rem}
+.tile{border:1px solid var(--ln);border-radius:14px;padding:1rem .6rem;text-align:center;font-size:.76rem;font-weight:500;transition:.25s;background:var(--card)}
+.tile:hover{transform:translateY(-4px);box-shadow:var(--sh);border-color:var(--ink)}.tile i{font-style:normal;display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--bg2);margin:0 auto .5rem;font-weight:700}
+.pg{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:1.4rem}
+.pj{background:var(--card);border:1px solid var(--ln);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;transition:.3s}.pj:hover{transform:translateY(-6px);box-shadow:var(--sh);border-color:var(--ink)}
+.pi{height:150px;background:linear-gradient(135deg,var(--ink),#4b5563);color:var(--inv);display:flex;align-items:flex-end;justify-content:space-between;padding:1rem 1.3rem;font-size:.7rem;letter-spacing:.15em}.pi b{font-size:3rem;line-height:.9;opacity:.35;letter-spacing:-.05em}
+.pb{padding:1.3rem;display:flex;flex-direction:column;gap:.5rem;flex:1}.pb h3{font-size:1.05rem}.pb p{font-size:.82rem;color:var(--mu);flex:1}
+.pb button{margin-top:.8rem;padding:.7rem;border:1px solid var(--ink);border-radius:8px;background:none;color:var(--ink);font-size:.7rem;font-weight:600;letter-spacing:.12em;cursor:pointer;transition:.2s}.pb button:hover{background:var(--ink);color:var(--inv)}
+#md{position:fixed;inset:0;z-index:400;background:rgba(0,0,0,.45);display:none;place-items:center;padding:1rem}#md.on{display:grid}
+#md .cd{max-width:460px;width:100%;position:relative}#md .x{position:absolute;right:1rem;top:1rem;background:none;border:0;color:var(--ink);font-size:1.2rem;cursor:pointer}
+.cr{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem}
+.ct{display:grid;grid-template-columns:1fr 1.2fr;gap:3rem}
+.ct .l{display:grid;gap:1rem;align-content:start}.ct .l a{display:block;border:1px solid var(--ln);border-radius:12px;padding:.9rem 1.1rem;font-size:.85rem;font-weight:500;transition:.2s}.ct .l a:hover{border-color:var(--ink);transform:translateX(4px)}
+.ct small{display:block;font-size:.62rem;letter-spacing:.14em;color:var(--mu);text-transform:uppercase}
+form.cd h3{font-size:1.4rem;margin-bottom:1rem}form label{display:block;font-size:.62rem;font-weight:600;letter-spacing:.14em;margin:.9rem 0 .35rem;text-transform:uppercase}
+form input,form textarea{width:100%;padding:.8rem 1rem;border:1px solid var(--ln);border-radius:10px;background:var(--bg);color:var(--ink);font:inherit;font-size:.85rem}form input:focus,form textarea:focus{outline:2px solid var(--ink);border-color:transparent}
+form button{width:100%;margin-top:1.3rem;padding:.9rem;border:0;border-radius:10px;background:var(--ink);color:var(--inv);font-weight:600;font-size:.75rem;letter-spacing:.15em;cursor:pointer}
+footer{text-align:center;padding:2rem;font-size:.75rem;color:var(--mu);border-top:1px solid var(--ln)}
+#fab{position:fixed;right:24px;bottom:24px;z-index:300;width:52px;height:52px;border-radius:50%;border:0;background:var(--ink);color:var(--inv);font-weight:700;cursor:pointer;box-shadow:var(--sh);transition:.2s}#fab:hover{transform:scale(1.08)}
+#ch{position:fixed;right:24px;bottom:90px;z-index:300;width:min(360px,calc(100% - 32px));height:470px;background:var(--card);border:1px solid var(--ln);border-radius:20px;box-shadow:var(--sh);display:flex;flex-direction:column;opacity:0;visibility:hidden;transform:translateY(16px);transition:.3s}#ch.on{opacity:1;visibility:visible;transform:none}
+.chh{display:flex;align-items:center;gap:.7rem;padding:.9rem 1.1rem;border-bottom:1px solid var(--ln)}.chh i{font-style:normal;width:32px;height:32px;border-radius:50%;background:var(--bg2);display:grid;place-items:center;font-size:.7rem;font-weight:700}
+.chh b{font-size:.85rem;display:block;line-height:1.2}.chh small{color:#22c55e;font-size:.65rem;font-weight:600}.chh button{margin-left:auto;background:var(--bg2);border:0;border-radius:50%;width:28px;height:28px;color:var(--ink);cursor:pointer}
+#ms{flex:1;overflow:auto;padding:1rem;display:flex;flex-direction:column;gap:.6rem}
+.m{max-width:85%;padding:.6rem .85rem;border-radius:12px;font-size:.78rem;border:1px solid var(--ln);line-height:1.5}.m.u{align-self:flex-end;background:var(--ink);color:var(--inv);border-color:var(--ink)}
+.m.t{letter-spacing:3px;color:var(--mu)}.qs{display:flex;flex-wrap:wrap;gap:.4rem;padding:0 1rem .6rem}.qs button{font-size:.68rem;border:1px solid var(--ln);background:none;color:var(--ink);border-radius:100px;padding:.3rem .7rem;cursor:pointer}.qs button:hover{background:var(--bg2)}
+#cf{display:flex;gap:.5rem;padding:.8rem;border-top:1px solid var(--ln)}#cf input{flex:1;border:1px solid var(--ln);border-radius:10px;padding:.55rem .8rem;background:var(--bg);color:var(--ink);font:inherit;font-size:.78rem}#cf button{border:0;background:var(--ink);color:var(--inv);border-radius:10px;width:40px;cursor:pointer}
+.rv{opacity:0;filter:blur(8px);transform:translateY(24px);transition:opacity .8s,filter .8s,transform .8s}.rv.in{opacity:1;filter:none;transform:none}
+@media(max-width:860px){.hero,.ab,.ct,.two,.cr,.sk{grid-template-columns:1fr}.lk{display:none}.pw{margin-top:1rem}
+.tl::before{left:8px}.it,.it:nth-child(even){width:100%;margin:0;padding:0 0 0 2.4rem;text-align:left}.it::after,.it:nth-child(even)::after{left:0;right:auto}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;filter:none;transform:none}}
 </style>
 </head>
 <body>
-
-<!-- BUBBLE NAV -->
+<div id="ld"><div><b>Ihsan</b><small>PORTFOLIO LOADING</small><i></i></div></div>
 <nav>
-  <div class="logo">
-    <img src="logo.png" alt="Logo">
-  </div>
-  <ul>
-    <li><a href="#profil">Profil</a></li>
-    <li><a href="#pengalaman">Karir</a></li>
-    <li><a href="#keahlian">Skill</a></li>
-    <li><a href="#proyek">Proyek</a></li>
-    <li><a href="mailto:ihsaann20@gmail.com" class="nav-cta">Hubungi</a></li>
-  </ul>
+  <a href="#home" class="lg">PORTFOLIO.</a>
+  <ul class="lk"><li><a href="#home" data-k="n1"></a></li><li><a href="#about" data-k="n2"></a></li><li><a href="#exp" data-k="n3"></a></li><li><a href="#proj" data-k="n4"></a></li><li><a href="#contact" data-k="n5"></a></li></ul>
+  <div class="tools"><button id="lb" aria-label="Language"></button><button id="tb" aria-label="Theme">☀</button></div>
 </nav>
 
-<!-- HERO -->
 <section class="hero" id="home">
-  <div class="hero-text">
-    <p class="hero-eyebrow">// Project Engineer · Network · Data Center</p>
-    <h1 class="hero-name">Ihsan<br><span>Nurrochman</span></h1>
-    <p class="hero-title">Profesional infrastruktur TI dengan keahlian mendalam di data center, jaringan, dan manajemen proyek.</p>
-    <div class="hero-contacts">
-      <a href="tel:08970629393" class="contact-pill">
-        <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-        08970629393
-      </a>
-      <a href="mailto:ihsaann20@gmail.com" class="contact-pill">
-        <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-        ihsaann20@gmail.com
-      </a>
-      <a href="https://www.linkedin.com/in/ihsan-nurrochman-09a615151" target="_blank" class="contact-pill">
-        <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
-        LinkedIn
-      </a>
-      <a href="#" class="contact-pill">
-        <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-        Bogor, Jawa Barat
-      </a>
+  <div>
+    <h1><span data-k="hi"></span> <span>Ihsan</span></h1>
+    <div class="ty" id="ty"></div>
+    <p data-k="hero_d"></p>
+    <div style="display:flex;gap:.8rem;flex-wrap:wrap">
+      <a class="btn d" href="#proj"><span data-k="explore"></span> →</a>
+      <a class="btn" id="dl" download><span data-k="dl"></span> ↓</a>
     </div>
+    <div class="soc"><a href="https://wa.me/6283819091201" target="_blank" rel="noopener" title="WhatsApp">WA</a><a href="https://linkedin.com/in/ihsan-nurrochman-09a615151" target="_blank" rel="noopener" title="LinkedIn">in</a><a href="mailto:isannica@gmail.com" title="Email">@</a><a href="https://ihsannurrochman-hue.github.io/CV-Ihsan" target="_blank" rel="noopener" title="Portfolio">↗</a></div>
   </div>
+  <div class="pw">
+    <img id="p1" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBAUEBAYFBQUGBgYHCQ4JCQgICRINDQoOFRIWFhUSFBQXGiEcFxgfGRQUHScdHyIjJSUlFhwpLCgkKyEkJST/2wBDAQYGBgkICREJCREkGBQYJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCQkJCT/wAARCAGkAaQDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD6pooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiijNABRSZqG6vbexiMtzPHCg/idsCgCfNGawpPGGlLD5xuo0hzt8x843dhgZOfris+58VJ5jPa67pg2AbobqB4x/31nP6GnZgdZk0VxM3xOtbBU+22Mkw2FnbTpVudoH8WwYfb/tbcDvihPix4eupvJtL61kmGQ0UsvlOjYzggjOfYA4oswO2orz3UPizYWqStBcWV2YI98ywzYwSeArHIJ+ox71gXfx4URmLTLMXtzKyi3Dny9ysu4FzyAB0P8ASjlYHsNFeP6D8a72NBc+I9PSK1MzQSvCMfZ3Hbk/MPyP1rcl+N3g4XIiGtQnIQgRDeTu7EjgEd/T1oswPRKK82n+NWkOIzpkJuEfOZbm7ht1BDBTw7bm69hz+tEPxg01iGe40dkzt3fb1XJJ45G7jHrj8KLAelZozXJ6f8RdCvdiC9giZxkZnR0bBwQrA4yPQ4PtWjH4v0bfsk1OxGTgMsykE/TqKLAbeaKrW+o2d2M293BKP9iQH2qx9KQC0UmaXNABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRSZoAWkzRTZJUhRpJHVEUZLMcAUAO7VHPcRW0fmTSJGg/iZgBXnGv8Axq0OwuGhguJXjJ8uJ4IDI07DOdmSBjjGT15xxXCeIfjdPIklynh+2hSLAt5NSk86fzCPvCMHC49xVcoHqfin4hR6e507Qkg1DVnwFV5QsMOecu/sATgduuK4q/8AEsGlSuZ7iDV9e8sMGuQGYsTgGOJiEiTJ4OCSBnnrXio+Ius2iS+RdxQ3ExG66SFfOJDFmJY5PLHJxjJA9MVzsupTSSs88jzXMzMfMnO5tzHliT1Y+9NIdj07Wvihe6rINLu9ailkUbv9HysYkHphQzfmPauWu/Etu9kJ7kahPeM2QzXZaI89DGQf51xVs8lskqwtiViJnyei5xknvyRVXUL2UTNAjNK0eEOD93jOPT6+maYGte+IniuZbiK5lhbG1kt3KEjPQuORnvis2LWJLS12QrGfNILFl5KgkgFuo79xnvWLKfKtnLzffIHyeoB6H65/Kqcl9HJPPkGSMBUVMbVB46nqehpBc3YtQu5lLPeSlXGMnAO3/ZHv61eg1l4rsbX8hnAijxhm2jHAXsT6nt+Nc1JdFLVHcMMAmQKcFueF/H+lLY3DqxZ22vnCkDhSevvjtQFz0hLstC6S5uE/1w3AHa64Jxx3HUdOKqT3f20TxBQsru5UIuEaMfw4HJI9M45yKwtO1x5wqZwUCkEdCTz/ADxUE2pbn+Rtu0g/L1Q0DL5VZVRJBbzTFPMVXVkLqeMBiOvqD0NNGnbLoLJpxUyD92Y1wcYHB98kjn0JqrHdyMjyRMMkF3Q4IbjG4Z6GpP7XcqdpePamxnzk469PQnvSsguxJLkfbWkspHmxL8zRscfLgHA7jpzXQ6R8Q/GfhtoRZ6xc+WEZ9txiWMAngfMO/wD9eueS5lePzI38wjkhAv8ALOailEty6ySRTFxnyz0C54PqP607Aew+Hv2jfFm5Flt9EuXVkjKTKIpHPf5sgZ9z7V61o/x70OWNP7XtLzSCxALXEJMbe6yJuUjj1FfIssSyu0kkiSLIp3xgbSGJ+8fYdgadYa5d6Xegq8qQhwzeS+0EA+gPX096QWPvvRvEWkeIbf7RpWpWl7HjJaCVXx9cHitGvjLSfHFrPPbNBALDVjIyxapZMbedGJ+QShflkU9Dx7819BfC74p/8JXbW1penzbhkwbhQAfMGco6j7rcdRwfak0Sel0uaQEEZByKKQC0UlKDQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUE0maKACijpXO+NvFcfhTRp75gXMY4RRlix+6APc9z0AJ5xQtQK/jn4haZ4ItkEytdX8/FvZxffkOcZJ7D39jXz/4q8Y+JfGoVr67SKCWYFYVl8i0gi3Y3O5PIz1IDZ9q57xd47bVLo3LXVzdTqsiSXIPE5kGSAM4UADaMfwjnkkV59qniO5vx5L3Uru5y7FyVwp4Ax1Ayfzq0rDNvxBrtnDP/AKNcJNO2Mi2DxwQqCwIVvvybvlO/I9MGsi2m2qqiQHdn5ifmdv1rJgIuHCJ5kmG+ZmIGaszShCojJYBd2McY6/jQMnecPcCFmHlgFmUcE59D9abJKJV82Q/JExmk5+8McZ/lWXDJNOzSsDuc73I5KrnAFSypsheAZ3vtQd+p3H8eBQImMk4t2kTLyyNhtp5A64+mB+ABqJJBPK6B1Eakuzk/xN0x6/4VT8xTZiRwWlkAOM8YPXP5frU0tr9l0q1BV/tNwXll3HhBnA/PGPwNMRnPdx3Ek4ZiyKAyhRjIHH9ahmElvJMBtaMfdI4OSMj8cf1psK7ImlU5Y9/0H61NcwedBHD/ABouMn8Mn61IxZLhpdqMeAUcf7Xy5/mTUIllj27x0UPnvnNOtHBWdZIgdjqFOSCASc/of1q4snmRJIoA2llkUenXP4UAT2roFW4VWi8td7gf3e9KjxRzDCu8b/KXZhllPQ0y1g8gOgbIkO7PUHjpn3BP6UGFliKFGDITjHY/4GmBPBMcOqkmVAdrdcHqM/WrCoHRJIUIjOSYlbDQt6of85FZe7aZmwSVTqDg4Jz/APXrWsSjWZlmwVHU+o/vcfX8KQ0TRXIXCz5dDys0Z2k4/vDp+FL/AGZG7tcwSJnqXOScHr1PFQR3H2K7Mc+1kk6MR98eue5/WpXWa0l8yzdQj/dG3j6H0/rQMdZ2duPtC7nKj5MOO/U49gMfnVWG+hkJEyq0YJUfLgpjoR3BIGeatefFfwPbzSeUW4Ox9rD6f4VjXGlT2SMqOrJ26jI9G9c/Wi4rGiu2KbzVnynUeZ39j/8AXrd0TVLjT5Y7izuZonLB1aJyp3dj/OuQs5ZrQZCs0ZGCGGSvsR3+tX1uSqRiAkGPIZc54POaBn0r4G+PesoiRatH/asWcGRdqTD8OA36GvddB8Q6f4jsBeafKXTO10ZSrxt3VlPINfCOhavMs4eCVfOiPzKwOHx0/H+dejeF/G9/pMzX2m/LKzDzoFcpIPRlJyGHbaQR2I6Giwmj66orh/AnxKtfE8FrDdjybqcHyn2lY5yOoGejdfl9jgmu4qSQpc0lFAC0UZooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAoooJxQAUlFFABUM9wYFLeVNJj/nmuT+VSk4Fc/4x1638O6Pdajd3ZhjhjLbVZQWb+Fcn1NCA57x58X7LwTaln064nuWO2K3Lorv79SQB7ivmbxp4/wBe8c3M815N5FrJN5scK87BjAAPv/niqniPxRf67e3Gp3ch864JAmZi8iIAQYy3GEOTlR29q577e0RRm2nJ/hHA+g/EVRSRQv7pJZPIJIghyp+bAY9yT3rLuXczLDCoXzDtUAYOMU6aT+Jl3bN0rdwecDP1NPsQZP8ATWYtLu+QYycnufw5piLVhEqRh3JCkZOP4VHb8cfjmjUJCLiRVBSIBUVQepwB+n+NKSFjeQ7iu7b6c9f0qkkjzuJWJ2BTLj26D/H8aBliwwsjSFgqABjj+6Mnn8hUCzztK8iHbvXYCeoLDB/Jc1LLExtBBECJZV+Y9h04pupLFb3HlxlmATk/QbRj8QTQIS0EdxefZmYBUVXyOcKpOf5iq1/qIvRIEl2pM2xW9Fx0/LGfrUkbrYlpCQGuJRGc9An+FUL21+w3724BAi+6fXPJP+fSgRNcxLbkCQZLzIAV6AgDn3qPzmZt+M7dxwO6nkf4VpXFsGjsN+QzjzAM9yOM/wAqybRjEWV1LYQ/KeKAJWgNsBg53hgreueg+vFO00B57hZCVXjkdR6f4UoUB0gZwEfG1m6D0olia1vPMIJDhkwPun8aBli0lkeUpKVTBKsB0H09j6flV1oZop8ljt4O7GVz71ThKTIDz5v8J/vj+79atW0zQIzlm8pTwo7/AIdvegCWK0W4e4UKOW25X05zkVFpBdbqRHIMbMWQZyDngjHXkdvar1xG8USgAiaZFZjCeYwwyM5OM4xx71WW3ClWG2RlG5kYbGIHt/hQMmcW89oYGbzEXOzcBwO2fUe/Wq6Ge0G63dpIVPMLnJX1we49qeVinbCzKJslyuSrAk9RkYz69jT5o7uKTLRO27jbj5fw9v8A69AE7ra3wVsqj8pjAJVvTn8/Q9qiJlg/dXCBkPy70OQR9DyKbcqTIsoQq7fKcDKtjs3ofQ0/d9pt2EB3sp+ZG4Zfz/SkMhutNgRxJFna3JZR/PH8+apvazwO86Kr93EZyAD3rShuPII3I+RwVB4/KrUdlDdL58cihlHAiB3D6f4VLKsZ0EqlUnjDK68lh/F/9etWw1Sa3mjuQSFbk5OApz19v5VQuIZN+5GIJ6lj8rfX0NETiyyHV3SQHJK42k/5/GmhHpfg/wAY3Nje4Vw1rcsqTwTMVjDZ4fcDlCP7wr6s8Hasur6Fa3Md1JeQumY7l8b3Ho+P4h0Privg+OV9POWw0J4J6j8R2/lXt3wW+LEfhq5XS9RcLpd0FKS5wkTdNx9MjAOO4BpktH0/RTIZo7iFJYnWSNwGVlOQQe4p9SSFLmkooAWikBpaACiiigAooooAKKKKACiiigAooooAKKKKACiiigApKDRQAUUUyaaO3ieaV1SNFLMzHAUDqT7UAR3d3DZQPPPIkccalmZzgKB3J7CvlL4y/EgeL/ED2drNK+kWrAED5RKVwScemehNdb8VfiFe+JLCW4sGay0C0lKx3JG5rucD5VRScHHXnOB154r57u5nWzlkd2yRtxuySe5qikhLm7e9VkB2qWzx0ANQPEGnZFcEAgH8BnH6UW0q27ruBYA9AO4Gf0qpYTSOh808SI+4AYyW5Bz9OKYMzrhjIXjQ5DDYg9AO5+p/lWnZL9lRF4Rgx5PQY6n8hVdIN1x5z4wRwCflH+zjqKsXG55o4go2ytt/Dqf5AUCsLfq0zrFHhYmjOB/dJ/8ArEn8aqXBWAzDYMhVCjsB2H6Crl3IGL7PlZhuJJ6np+g/nVW+hM0UuMh5EUJ+FAE1s/kxb2bLkRkDvyf/AKzVmhTc7pZHww+6D0Ybuf51cDqHikB3bpEj59RuH9az5t8og6h9rBgOmQKQDriN4rqBZVY4ON3YHP5HtVg25u4neTJmEQUDuzFjnNVHMrOxEsi4w42nvWikqtE8xKq4AVW6ZJPf/GmA27mN1qIJcEJtiTGBwuMgDp7/AENRX1sILiaNSI8uSh/unrj6Gk8sxKWcAupDjjkMOv6ZqeSVLiVWclleMHOeo6f5NAFdV3xuzo3YnuVI9jUtlIrnyZZMIx+Rx0z/AE9waiBe3YEHcB0IHOO/FWJIvNi3xFM99nf/AD6dfTNACTWRL+WZG2s2Mj9CPxxTXuJrNlglYSsp5cLnDe/vRDdYBEjYY/KGY5/I/wCPSiSUvGY2Ugk4yT98e5FADrdwJXmWR/NbksDtbPv2NTNMty2wShh3jfjP4dqyZImscmMs0JOCDzs/wq1BdxOu2Rd4B4yu4fX1oGaCPJbqvlDzVyf3bcuo/wBk9TRBdxZMYaRQ3ISdCVB+v/1qhjdbgYhcYznruA+verDPIylLiUYOSpDYH6//AF6ALFvNH54ZoyODkxsSnuKLm2EEpu4w+yMfPsGCI/7w9QD1Haszb5cbNv2r0O+POPqF6j3FaFlqMtvAmJYSxZgEDH5hgdN3fnp6GgYyU75QZQobGYpV4Eg9PY+3Q0scskc7NayPGwGGiZcHPtV6WCGS3aMQ+XFL8/yPjYcdQO4PcVnzWd0kSoHDxooGCPm9iD247dDikBetr6O/JMvM3Tepwce/r+NOdGc+W48yArhgijOPde/4flWJPO7MYseXP93LAg/UHr+dWbHWJYEWG5AwrHAkYBfcbv4amxVzSeMKDEsinZ88cqj7w7gj0qxZTtBmNNqo3GB0RscH2+neqTGG5LTW7Ouc4RyM/wA+v0609LiOJ4RMijPQ5w3HUY9qYHu/wR+KFxot1Bo2q3ROmzMI0V2+W3YnGVJ5C56jpzxX0mCCMg8V8G2lyftUbASPAG3MYuZEXvgcZwOfwr6v+DniuXWNFXTLu4NxJaxobediN08BHyk+pBBUnHb1oIkj0SiiikSFAoooAWigUUAFFFFABRRRQAUUUUAFFFFABRRRQAUlKaSgAooooAK4H4g3K6rdNos87xaZbW32u+8ttpkySI0Jz0OGbH+zk8V3xOK+b/ix4tW313UtOgd5BNdtLKVA2SFY1VFJ7hcZx6tzTQ0ef/EPX21PUYrOApFYW6iO2so3zHbqecH/AGyeWPXnHavPL4+awiHC53biep9a1tYl+zH5FBIA3YGefU+55NYCTr9pnz1VSw/z+VMonRfKhdmYkY55xzjB/nWfFIILVi7NtZmjUd+p7VcdGkiljyDtXYAfXrz+vNRXEamC2+U7Agd3B75OeKBDYyHiCHDLtLgbs9OnWnWpaUwM5YuoZyM/eO3/ACahtV+XBOM7hkdCM5FRzbhexbSdw2jj0zzQBJIWab7xJA/AjAIP9Ksuy3EKGIhinBPcdqjmhLwI6/62MFX9x61XSZ1UFOHZQd45O73XvQMSFFiDIdwfIlUMP4g3+GadLbiK43ZOwMTx3BPX9f1ouAZX3+oHT6c1otDJJpcV6VJVD5Uj9xnjP8vyqW7DirmI8RjcFeWBAGeOQafbsElXp5bn5Sf4Qex9geKtmKS8gCjAlRsMMdwev8vzFQxoEMkbIOMnaePr+H8qaYpItXETlduFbnp3+mfUVUAhbZbsrRMp+Qhhgg9RkjFSQTPEdjH5RgBn4B9FY9iOx6VNdWsWoqVhOyUEBkcAEGmKxXNsJJNkJYEN8yscHjr14zj3qHLCT7hjc9Rj9CP61JDdy2DyW96nlzKNgc4w2eBn14zT1kjG5XZQuMruHT6Ht/KgBszJN8rQqHIwT0Dj68g/jTEBhbyjkoezcgH09R9elKYztLxTQsgOclh/jxThOQT56Q8HPyvn9BmmA0CN22gOAe6849vpVeZFjyUBJHUc9PoKuyTwPFjZMMcD5uD+A61X3KrgOyqqjCnqw9qAIwJeZFAKjkMifvB9R3FSrqFwoG7JUc7iB/I0wTENgGbd6BiQR9KfuwQzttODyw2H8aQCw6jJFOSjlyeoUYI/CriXIu9okkaNQSQ6qd2fxH9aoyTo5DFI2cAcR/z5qeG7Nw6AzJCOgOefoaALsU0dtNldTxk4UyIx+vQGtE3K3I2Q3W8gfKAMFj7A4NY11eI2GlQoB1lUghvr7/Xmp7Xy5y7W5kcAhf3als++3rTGTzQLJuFxFJlcDeoBwe+Rg1SuFgkkj821nY9fO+UkL6cdfxrVa7jt8iV3MyHiMxOwz755H51FutTE832gKzZcwuGwcdfp+HNAEEdvt2RRSQSpICYZVyVYehz+oPSonMjo0U6OY1Ybd2S0f49Tg/pVFr02cheylQxbsNEAVYHvVu2Vb9MKS6uCFyec9lJ/kfwpAjS0PUC0hhkBEsZOecnPXIP06V7F8DdeRfGKRbykk6loGZdqmQfej642uvPT7wB614RbyNavFcxyFh9w8YOT6+nf8a6/Sr2S2mt762cpLGwkTHYg/wBDSHuj7yB3KDzS1zHw48Wr4z8J2WqEFZmTbMD0LjgkexxmunpGYUUUUAFKKSjNAC0UUUAFFFFABRRRQAUUUUAFFFIaACiiigAozRR2oAoa9q0Oh6PeancZ8q1heVgOpwM4HuelfHHiXVjeTLfNM4nYNLK5YMskrNuJAI4XkDH+znvX0t8c757L4d36xth7h44B77m5H5A18l+J2uoYp4Zh+835c+pxzz3OW5980yonPX1w00c4Ls0hbIwcdO36iq1oVkKM77jISGJGe/aq8l3IOB025zweahtbpeEY7Crb1LcA+opjLN1cm3mXcdqyMQW757H8CKWV1ubAMuFOCpGcYO7P4d6iba7tCxHzgld3I+v+frTrd1+zyW86FRnB7YPQc0CGHzIkLKCcd2HT3/Uiq8xbzo589MA5PT61F5wIdY5XG3I2E52/h3FAuMRBlwSRghuSPY55+nakFzVW78pxKMoGwSB/nsT+VVS8aurPhDuKhlOMN6Htz+VQJcFiFYBSP4T3qUugU+egZWXDoBznt/iPxouMmd4kfZICjMRtLLxnHQn3rc8NXcUdvc6a6efaXSOAoOdrY4IPqCOnp9K5dQ0Y8pmMsfRQy8f59qSKcLN5sUkltODyA3BI/rUyjdFQlyu5rRMYrraWwyHa4buOmaS8tnY+ZDgtkFgRjdn39aoS37XD724nUZLKD8w9frUlhq6uPs92+yIdJB2BPT6UtUNWehKJI5Y5IuFlHOxyVIx9On16U0RSQN/q/tCAfdYfOo9j0YfT9KdqS+XJumAdQfllQ4ZfcH0/xpIJ3jwquZeeVaQAr9RV3uQ1Z6iyyI9uiTvuAPHmZ/L1H6iqbWsD7za3EisOoIPB+lW5Q8rMzqm5v4o/lbHpg1VNk85Ci4mjOeC4xtP1HWgRUmmu7QAShHBHDbeDUT6hKMHyEBzklOCfrWh9guo4yhCSKOoVs5/A9DTH06ZDkBUB524AP5UBYppqEbMpEWxh3BzUrXJKH92ZAf4g5GKfDYnd5kiKoHR+35Vc+wo20HZu7lemD6g9KAszKAE4IKEN6uSSPpzVhLNwCyDLccJ8355GasDTVEnybkjxhQD978O/8qWQpbgwxMHbqQedg/MEUwsVzPJEu2UdOzocD/D8CKdb3sR3Z/dMecp8y/l1pYpnG4PG4BP3vMPH4HNBhBfeIpkHXc2FHH1oETR3LmQeVJAdwG4Z4b6qex/Gp/IWOUtDAQQdzRDK5H+y1Z4eCGQZKEZJUZ6fiePyp41GSJQkcrxgZBEbkD/69AzVOoNMVRXinXjMM67SB7EHBrWgayuGeI2bQhhgKCCM9gOP1rmoL1CpEo3jPzFOCvvxjFX9NktpLkJ9olRlGArnG4+uR/gaLjGaraizuzMUd1ZcyoCucHt05x61UsLoWl4Y/M3xSjIJGMrVvUSY5GWWDY+M4Yk/iMcEe6/lWR5cgkAIPByobqM9vf60mBtXyKY47lSGib5J1PcHv9Qe/wBDW1pFwRCImYo6/wAZ4w3ZvxHBrE0+5C27pxIueVPdehx+FbFu0aXB2kbGG5TjOR2/z6ihjR9Cfs0eJoze32gSSsrPGLmJDnGRkOB+h/CvoOvib4V6vHYePtLuHnMCpIHMgbGwdG+oxnI7jNfbCkEZByD0IpEy3Fooo70EhSUtFAAKWkpRQAUUUUAFFFFABRRRQAGkoNFABRRRQAUUUUAeV/H+2u77QbC0to96G4LsCuQxC8D27mvlfxPei7M8+2JWaR5AkS7UVd3AGewHFfbHjyy+1+H52AzJFtdeM4wwP9BXxL4hgcSHJUSBirKepPcfnTKicS5SWPJYEEE5bjpnIqGBZDGvLLsODgnBB6H8aufYWEsbRZ8vcQc+jcEfhU9v5dnaFJEBcEx57Ee9AWI/JfykdJSXQ5xuB2H/AHfTsaWK+81ZFYKMqFIU5Gfao2s5FaP7OFiOCQVyc+oOevFSWVsbh337gxP8Qzj0Pt9KBoqAJNIWDOj/AJA+/wBaikSRpRGDKzHgbm4NankZKybCZfusoH8XQ/416b4O8AxXkCXjw5WQAqccmsatZQWpvRw7qPQ8+0T4fanqzh8xwIMHLNgn6epra134c6rpUCS2YluUAIZSuGX6ev0r3rSPD8GnwqIoVXAySBWhFYLclmaMLEOAT1b1I9BXnvGyvc9NYCHLY+QZ4LmzRndHUE8huhPsexpiAOpOFYkfdK/qD/kV9War4I0jUflksYWGeoUAj29xXIax8FbGWMtZoI29u4z0P+IreGOi90c0suktYs8KtNLW7T/R5ZY2HJVjuGe/Tp+NSP4d1LyJGSFZCq5YBA3H1r2SP4CQtE5N1LBPj5HQ9D/Iiuj8NfD290dPKmkM2MDeDz+TAg5oeLS2HHAt/EfOGmTPby+ReRssfOexBx6dKmexjlyqyBHUfu2PIA9M91/UV9J678MtL1SEJLbRgsTyq7T0Neeal8FLmzZpbW4wEycHoR2xVQxUXuTPAyW2p5NHM9pJ5c6SB1+8FPH5dCPcYqQSRkh0kjZOfvnBU+h9a7XXfhpqkESv5azqgwNmcr9D2/lXKT6NNC3kzQsG/uyjmuiNWMtmctTDzg9URrHFJgq8HHJAYL+tI1xHA5TzFbHQ+cXz+GKSPSpY/wDlii9sK/r+NSQaXKpBSJRjPQiq50R7OXYaZwYsoAc89ev5gU77WoLNLKAzDLfL378AD29ajn06aVtpiXcOpMm4j646VUmsjvAl3buuEJOR+NNSE4tE0mpGRv3bOu7rtxvP4n+Qp8d5BA3zI7sOiZGSfyqIWtpGpBlKHrtkUr+tJ5CgHyrq02Ec5cn/APVVIgsvq6R42DYcnGVxj15Gar3V3Jc/vA8XOMnac/macBaNGFe4hkYdFXOB756n6UoSBQHVJ24PzKBj8RnmmBQMRVGLHcB2IpnlMArIRIuMntirW9cNwrdgMkHrU0Rt9254HHcMrY20CK0Fz9ndSU4xgMp5H+fStC1WGUqCSqnqUPAPYgdj7flTPI06chzmPP8AEXBz+Aq3JbQi2WSC4SVlGdirjP1JI/rQNGnBbXUybWkJIH3CwBb0we1ZGowNa3fmNJHynHO5icgYOOMg9881NpkzOwAlRIwcKpk+ZT6KRk/geKv6pAtz5e590sBLMoIG7A/XB9PypDOetJvKlhV+qmRcZ4Iz/wDrrodIufPWazkLMY13R4649B/hXLTK6lXcFWUNgevvWjBfeXJbyx8yqAB7j0NAJm9HLe6Tqdtd2+JJIGEgUdSPRh6HpX3L8MfElr4p8E6ZqNo7MjRBCGOWQrxtPuOlfBd1ceReDJKmTDIcYHXpmvqb9mjV/I/tXRNxW2mCahZozDIDACQD2yVP4mgJHu9FFFIgKKKKACgUUUALRQKKACiiigAoNFBoASiiigAooooAKDRRQBW1C2S8sZ7eT7ssbIfoRivhTx9+68QX8MT5jFzIFYjAOGPI/I19x+Ir4aZoGo3xBP2e2llwOpIUkYr4m1/Tbu2vXtrlHa5jAkbzBz84ywHbht31yaOhUTk4x+8dNm4/eIzztPcfTIqrd2cjwMG4RvmV17n/AD/OtWSH7GYcNlipRewyOlRQtG8zK3yxT9E7K2Cf8aCrGHZXkn7gZLBWEUhY8bT3/wAD7Y71pWUXnSv5Q5JO4Y6nqCPwrLvNtlPkAlVw5wfvDPGa7z4deHRqEUkkWSY13KWHUYIFZ1KnIrs0o03OVkP8EeHBrOpNGyhihztI6j39D717tpGkx6bbLBGpKgcEnn8axPBng7/hH3nnkdZHfAXbxjjnI/z1NddGq4AbqK8nEVOZ6HtYenyRsKsQbGcgDtUm0KMUsZAPLCpBhuRXNa50DUgyN2386kSINwR07ipIxwOwNSpGOowafKNSIvIAPy8H9DUqwjZyOfrT1U5JA60hfHB5HrVWsFyOS3DkE446VTurQOmOhJAyBnvWivzdajdT5gxn1xVJhYyW0tCMSRoQecjvWJqfw90rU8mWBeT2FdlIqt0p0aDac007bCavueQ6n8EdNuifs01xBk5+Rz1/Gsx/gTAgOL+6JI74/oK9vaNcfd/Wo1jEjcgda0VaXczdGD3R5TpXwV0eyQGWO4uGHPzycD6YxV+4+E+jXamOazyjfxO2SPoeor00wr0wDQYIyOg/Gk6kt7jVOFrWPAtc+BlwGY6PqB/2Yp13Aj0zXEX3w78Q6S7reaH5oXjfAQQR619aLaIfvAH0A7VG9nDLNtcAtj07VrDE1Ec88JSl0sfGr+HpmkZTpGoR9vliyKafDkyY2afcA+rJg/lX2DP4U06YmTyE3ZzuHBqE+ENPmUlolIHqucVr9bl2Od4GHc+P5vDdzBl5rW9KnkkpkD8apSaNO4zDbuhXg4XJI9c//Wr69vfA2myqyoiqTnoKwLr4b28BLJEj/Qc1X1t9US8DHoz5aWAqdrsVPpxx781oWdogJAuJN7dt+c/jXtGvfCa2ud00abc8525we4ryjxX4F1PQZWmWAvbqcltudo/wreniYy0OerhJQV1qZrWN3529HVlJ5JRQWHof89atXFwrwqW2iZMF1brkeh9R+oqHT7ssR5hVzgApt2kD6DrVXVJXZ22AOj4UMVA4Hv8AWui6OXYy7q5D7dvABIH+fxNWbZfLubdCMgBDn1B//XVKODfMIwRycAk8ZNa0cJW9t96OPMwqNjg7eCPrSEtzX1oGNVlyBtA2hSSuSMgjPuCPavoT9nDTJb+KDWElZpbGcoqnj92RtZQe42ncB2I96+e5mGoxyp1wVHt97t+tfTn7J0Mw03xBJIFMQnhSMjoCI+R+WM+9A5Hv1FFFBAUUUUAJS5oooABS0neloAKKKKACkNLSUAFFFFABRRRQAUUUUAQ3dtHe2strMu6KZDG49QRg182fH7wZNpesWupRK7Q3sBViOivGuWGB6gFvzr6ZrlPib4bfxN4Qvra3VjewxPNa7epkCn5f+BDK/wDAqBpnxBfEzW3KkbJdwz1B6E/rWUrPcxO6uQVXqp6EHIP1x/Ouu162jguVaJFaOSNVcKc84Aycd+ufxrmL+2XTIGETlk8xtrDo3BA/nSLMqdwY/KlUGRSV2e2M8V9EfCnRUj8OW8ojxujAJ9R1FfOOqpnVnRmAO8cZ6cACvrXwRb/ZfDVlHgjES/yrjxr0SO/ALVs2FULwKVo8Y9KkWPuetUtWvPIgZYkMsuDgY4Hueleak2z1G7Ifd39pp0LTSttVAST1xXO3Xi9S2UaRNwyAABx/nvWNcaa97KBeXL3E331LnIU9sKowv+eazb6wuXDWyNbxNgZGGYn69P611QpxRzTnJnSweMvIRppZVkGR8vRjx6fhV2y8dfaeNqL23bxnr0wM4/GvOp9BnhAeZfOBHJSRgQe30P6VE1jcaaUltmdkGfkccgd/r71o4RIU5nrX/CXwwTYuDxjOdvIrStNetNRVTFMORuxjtXis17dzYikUqz/Lkt8rcj5T9cfmK1tNvLiyeLKgIhBMintnGfTI9fwOaiVNGkKjuexpOhXCMG9xzSNcBmKggdBz61xmn6++WidyzI5QuDkEgZ/rWxFegxAEkk/ex3rnlGx1Qlc2jIF74I5xU8T7SCT9eaxZLseXwenaoxeM4IBxU3LsblzcRjqfy61XSfEgIxjPSs6K5KKR1PvQlwd5DHH9aVx2Nj7UAOCpx1qMygtvDn6ZrInuiudpHHFZ13qUir+6Y7iOvYe9WlciTSN++8RW2lxPLO2ETk9uKxpfGVxcszwRLa2yD5nuiFOT049+uOuPSuM1i/eFxKWSRs5DOM/N+PYfzNcteards8skcjEiT/WHsPQA9Mnknr0HrXTCmjjqVH0PSJPH0seA9xC7kjYkYYg89T2p1x8Qwke2RoYXzt3NKFIz0+U5615hbm/ugpEUvPJll+Zm+g/x/StKx8JT3cwkuRliTlSM4rTlitzLnm9jrf8AhJrw3aypdiRc5AjUyBvUHByPqM/0rZ0/4i2kjG3vUkiZDgNKCM/jjB/Q+1YVh4WsbSJYzKiFeQBhQPqR/jWkunxgkq25SMZyzA/XKkVD5WilzJnYBbe9hE0JV1cZypyDWZqOiWl5CY5YlYEYwRng9RVLw5YnSLqQ2p8uKRsyW5zs3f30H8Oe46GujmzIc7evpXNLR6HRF3Wp4PrvwMhGotc6fcTRRElti4O0dwM15H4ls7jT9QnsJo132rmM7hzjqDX2dLAD1WvAfj9oMNhcxapDGoaRgr8feG3n+VdWGrty5WcWLw8eTmieR6YoFvLdMFLxuBt6ZXuR9MityCT7U9uTkm3mWUkqBnI9uvHfrWHY7vP2E4jkZgTjIxgc/lW1p8cqW82cCTYFCn0yP8a9I8tEukoJG3N+7DvuJPTO79B1NfZn7PGixaZ8O7a8+ziCe/llnlAzyPMbb1/2SBXzD4A8MXPifxNY2EERdZCXck7SqiTB9s4J4NfctjZQ6dax2sChIoxtVQOABwB+QFIJFiiiigkSlo5ooAKKKKAClFJQKAFooooADSUGigAooooADRR1ooAKKKKACkNLRQB8hfF7w5BpvjzVrS1A2NILgKOCocZxt+ucHvXmeoELFHHLGXAcNtUZ+bORn0HFfQX7R2itZeI7DW40VlvLYwNjrujOfyw36V4BdQgNMuWGwYXjrjn+RpM0WxzMcU9xqqWxeNkku0Jk8sbmxhcbuuOTx0719jafbC2soIlGNqAfpXyJ4Uhe/wDE2kWxH3ryJB9S+TX2MqCNAD6VwY16o9LAL3WyJQ5yN2KoXFod7HzW55KqAc/Umr00mxeOKpSvuwdzdOxriTO9ooz2MD5Yg+YR99eD+lVktSNuQr9uRyKuF/mJNJ9oRBzik5MtQRE8DPEUYBj2J9Ky77RxNEVVcE9x2rdiuI5OOKlPlEdRSU2PlR57qGmPAGV0+Q8dM4qumFGwtlccj0rvryzhuV2sgYe9c3qOhImXTI9s1opMnkRQ0/fEdu8/MxZvc+v1roIb0RYI5AFc1sNu43dqtwzhmxu/Ok53KjCxvpqHm8cEGriT4BPBHrWHbOpcEgfWtOHJHUnNQ2aItG4J9RVdr4I/Xr1pWLAHHNZd4ZNxOMUkDLNzfHB5J9qyr++kMYEZODwR0wO4qGW7ZDtbFVZi9wRtyPStFKxEo3IZ2JYgnLDgf1OaW00hroACIBM55q/Z6QJCDKx5rprOGGALtwAPQU3VZn7JdTOtNC8tRkEnr15rTW0Ma4wce3B/GroeI4BOKc0ka9PzxScmNRRUWAAYbdntx0qaKFNw3bn78nIpxuIs4Iz9acsikfL3qeZjcUXoo4sBifu9sVeibKkdTWPDPsbLVet7jLDOKTkTaxZcPuAPQjrXl3x90kXfgx5gMtFMhyOuM16vuDLziuG+L9o1x4Gv1Xkrtcfgc1dF2mjOsr02j5asm8q4igOMEgEdMjp/hWsFxNcqzkRhD052tnn+VVobaOO9t3YH5QDz1POf58VcVlW9mhc7izkvgYyGyP5GvdPAPon9mHQ47nULvWGQM0MXkjnpv+Yf+g19IV4f+zNo1xYaTPe7h5FxEqMpxncp4I9sFq9wpEvcKKKKBBRRRQAUUUUAFA4NFFAC0UUUAIetFB60UAFFFFABRRRQAUUUUAFFFGKAPNvjzpq3fgw3JeOP7LITvcZA3KVA9iTtGe1fI2qT+VdPcoOiHAPXdsI6dhX3H46tLO/8K39rfoXt5VUMoOM/MCP1FfOnxI8OaVNoTX9paWiqcBZYkzgZwAuPc9e2DWFSsoyUTroYdzg59jyL4ZW4fx1oSbQf9KUgnocKTn65r6tcMwOB+dfOfwu06NviJpJYZMPmuO2AqECvpEnC5rjxj947sCrQMu7JXgn8MVkXN8kLHcwGfWt14DIWBOc+tYOt6FHdKQWYZ9K4Yy1seg4mXd60EHyyIPqaw73xVaWoZ5rqNVH+1VHXPAt3chlgupVJ4Hz1yEnwjvSWaS4lkccjfkg+3FdMIRe7MZymvhR2KfFTQ7NCXeWXHYDr+dRJ8c/D7OI1tbhmJwMSA59sViQeDrCHTp7S40l7a4MTxJOoLJvYcMR1z2yM9686fTdb00rDb6Vc2sqMArrAWOdwIKsAe4610ww1KW7OWriK0Nke0L8X9GuJAirLGfTcpP5cGry+MLDUCBHcKT12H5W/I14Zpmmap4g162t9UWeaSRliknuUOI0B7sRxgf4V6F4o8LaZYyCXw9e7gmN1uWLqD/s9x+HSpqYaK+Fjo4qcviR2bPFcncpFQiAb/lB+ua5HwrrN7HqkOl6mDG07bIZScgt2DHtnsT1r0OOzaM/MOQcGuOScXZnoRkpK6HaZb54xjmuktNMJXcBk1m6ZbqJSMfQ4rqrJNoXHHHNZXNGtDOl0lnGTnPpWVfWJjBDA/XFdjKDtA4rF1GAvnk0+YWpwl3a5lIA796ZtEAyQARXQXFgC5A6461geJFOm6ZNdCF5pVwkUKdZHPAHsPU+lUtRNlW98Qx2KbpJUQDuTWZP8SLOyi3SOijpumfYPyGTXPJ4H8SarIb3VQxO7IhjcKoHp6itnxD4TiufDbWWm6M9tdhldZG2kM2MbSeuMHrXTClB7s5atWf2UOT4wWcUTTLPuQAn91auwwOvLEe1Fr8WZtSkH2aO/cMCQUsMg4x059xXn7fCbxPJh5EhbGSAbkH69K7HwH8PdW0aSaa4it53ePy0DOxVeck8ck8AV0OlRS3ONVcQ3sXbj4mGCULcXUcLZxi4tnjOfzOK0tO+JlvMVDNaSjuYpeR+BxVlvhu+uXHna1K04BJWPAREzycdTWvp3ww8PWkomNtDn/Yz/AFrCSpdDqj7XqPtfFlteIAhIz+OK6fTn86NXBPTNR2fhnTo/lhtolHsuK2LPTlt1IA4HYCuaaXQ2RLFnbn9K5z4ir5vg/U1wOIsjjofWuoCAdPwrnvHEZl8KasuMn7JIR+AzRS+JCqfCz5cjiJmDSgLIoGSPXocfzq68MbXUMpBKmLPHOT2H8zTltJpI23AqCokUHptPf9K6Pw74TOppHcQzTRXOR5YK/IAHULk+hJbp0xXuOaUbs8FU3KVkfVPwPt4IPhvpBiO5njLMfcnp+AwK72uK+DcTw/DjRklQLIImVsDg4cgY9sYrtaowYUUUUAFHWiigAooooAKKKKAFHSigUUAJRRRQAUUdqKACikpaACiiigAooooA5zx/tbw1OjHG9lH65r54vbeWPT9QtA5MEsbsFP8AA+OCP619B/EBiNFVR3f+hrxTWLb7HYzTLEHfyyu0+hrzMQ/3x9BgF/sr82cB8GrFpfHTTOvEMEuD2HGP1ya97OCgxXl3wr077JrVw392Ahj6klcfpXqag4HrWWKlzSFhY8sbDCny59aqyQB88Zq8VO05xTFT1HFcZ2ow7iwVweMelZsltNETsYZrq5IFb/CqstgJORux7YqlJjaRyMsl1HlXhVx9M1Qdp0kO2xXk56YrsJ9DDnOW/Oq0nhlJBksw/GtIyZDSOTSCeW53y21pHwFyzZIA9hV6K3h+VVIcnoI1xxXQQeF7eMDK5/Cr8WmW8P3YwPTAq3PuJQ7HPRaTE5LPax7j0Zhkj3q3LAqRBG5bqTita4jUKd34D0ql5LSEnFZTlc0jTILGIpLk59eK6K3BZRzVC1t8EYFakCCMiosaE7RMydKzr22kTJxkVsR444GafPCpQcc+9VYhuzOOaME4x0NRzadHOdzDj0PSty507LFkAz3FQiIRkqwxSTsNxuYVxYtIpymfQjjFZs+n3IGIriVR6N8388V2YgBOMAgjtTW09Xbpx1rVVLmfLY4Rf7SgG1ijc9QpH+NTpPeldrORn0JrsDpCN1WnJo8fHy/nSckFjmbWK5YgEk+9bFnZbG3OXOfXitmLTlQcAce1TLYk4yeetS5dhWIrdMYwMVaVQDxjHanxwMijav5GpXBIPGSKkViDaCSazNbt/tGlXsOOJYHUfiprWKgAA9TVe5jVlKtgqwPFXT3M57HzBFHm5t4whDy4BwCeB147dDxXo/hqxlkOnQRRMI4oYxt6AsCzHP4t+lZmn6AJ/FVqCkhgRwJAnGCTwM+hxXpdrpn2bU2GANrDoMDpXZXqXiooywlFKbkz2LQtPXS9Hs7JDkQxKucdeKv1BZP5lnA/rGp/Sp69Jao8CW7EpaKKYgooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigDE8X2wudIJIyI3DH6Hj+teRarbgRSI3+rj5IP3Se31r3G+txd2c1uf+WiFf0rya+tPMWSJxywyc+tebjI2kpI9zLJp03B9zk/BFv9m1W5iJ3OIAWbHqwrufQ8cVzPhuHyNUvNwwPKA9z81dGp3EY71xyeh2SVp2HPmRSFYhvSnrF8uM9KQDA560qMR1P096zsaocEz97AzTtgHb9KblSwOOaUP+829u9FimgMYI4H50x4yMgAflUxPOe2KAvmDjFUFkQFM8noBUMgCjdjmrbLjqDx+lU59q/M2MYp2GrFOTEjY9aTygoxVO71KG3/jw2abbX7XDcAnjuKnlbLZq255PIH4VeVRjP8VUYuEzjHvWhAFZcgZ96pIksJkJuxg1Or7lwMk49KhiAPykk1MIvJBJY89OatIymRqimq09qGOCoyehxzT5WyCPXgg1lPem0JfzJAufqD+NS4lRVy+tvsqRY9wxiobfUYrgAKwJq1EyhhjvUWKa7iBPYAULEM9PwqdxyTSYAbBbGaLE3GiNepbp2qdYifTFNEYLGp4wVOCOOlCREn2BUUR/NjPSqkgaNi3O3r7VbmKlD8v1qsx81fUfWmzOJVeUMT6daZN86DB5zSXJ2lQpHuaYWyv60Q3FPY5TQreDZdoigSeYQDjGSD1rp4YM6g5PO5lYflXL6VIRezc8+a/T/eNdpbqZpoCOoHJ/CtG7s2UeSx6Fp3/Hhbj/AKZrVmo7ZPKt4k/uoB+lSV7cVZJHys3eTYUUUUyQooooASloooAKKKKACijFFAB3ooPWjtQAUUUUAFFFFABRRRQAUUUUAFeb+JIBb6rMuMKJD+Tc/wBa9Iri/HlkzSJKnHnJjP8AtL0/T+VcmMjeF+x6GWztV5X1OIsYympXGR1Qc/jWjA5PJGABVKymSeZyF2yIuHH41bBCJnua8y3unry+NkzT8YUZ/GnLI7D7oA+lVF9R3qaKUAfOcms2bRJQHUE5x6VIr7Opyaj3AD5vrTPlYgnp1PtTRdy4HyuOKQy+WPm5JPaq5n2g/NnAx6YqnPPk5JJ78D+tWhWLctwxyAQg7kisDVtRZMqjliemadf6gIhgYBHrWNLcB2LDDMo554p2uyloLZ2ct9IZXBBzwP7v/wBet63sTCu7b2o0ZI1hBIAWtdmjKDoOKHLsVexXixxkfhV6244xj2rONwqPjgVKl+vZhj3qSTWTCnnip5zuQbWyOxHasj+1o3O0EZ9ajOo4OQ3H1q72IcG3cuyxs4PWs+906Z4CQCcA49qsx6lGep56Val1BWiwuOetNNFarocFa3j2l2yOzqQccdPxrqrTUVeMHfzjiuc1eLZfboSAZASarwag1vL5bEE578ZqZLqi209Duo7pSq5PGc81OzqxzkA1zdtfZHXB9q0ILgk57EdKVzPl6mqkqg/K2cdamWY9z+QrL87B4/GlScdM7se9RclpM0C+SRuJB9aYV8mM9wOgqt5rZ3Hj2pxn3pjkH60EtFe6lDP0wSOOKBxFnIOSKZPjlsdKajn7uKqG5jU2OY0u326lKuTgysf1r0DSId98kI5UFU/M1y+j6exvDK3CbiR+ddn4Rj8+/aTGVDM4+g4H6mtaS5ppGmInam32R2lLRSV7R8sLRSUtABRRRQAlLRRQAUUUUAKKKBRQAh60UppKACiikoAWiiigAooooAKKKKACsnxNZfa9KkIGWhIkH4df0zWtWZr+oNY2JEaq0kuUAboOOazq25HzbGtDm9pHl3PMRarDeTyKAN6gZFNkcMduc9hVy4iMXGSzfkKz3yH6968a2h9De8rslD4OMdBTd5BJCnNRNOM/09aVJMDJxiszWLLDzfL8wOR6VGs56dM9qhkmDnPOBUUky7etNGqZPLeBARms+71FlQ8kfSoLi4HTOT+NUHeWd9iAgn2xVLQd0RASalcbHZ9mecDk1qGyWKz8iOJEyMYqSxtVthjO5upPvV9olK88emapCvcxBriWsflscFazNQ+I1hYDE1wEPYckn6AVa1vw/wDalaWF2jc+gyDXGHwG32k3NzI8rk4ww4qlBPcp3toa7fFLRJSAL9Vb0dWX+YrTh8VQ3FuJYZFZTzuVsiufj8IW7/et0X6Dmq0nhGW2kL2UrRk9QvQ/hT5ImfNI62HxFnBzkd6zNZ+INpo5PmebM4/ggTcR9ew/OsdtG1Qr5XnNhuMqMfrWnYeGI1h8uZc5POetUorqEm+hm6b8W0uLkI1jeQqx4aQLj9DXX2Xi+K4jJLHGOprBm8HWjLs8pGz0yK2tI8JW1pCH8nkc4JJolCPQabS1LNtM+os07ZAHyqGHX3qO804ygyAlWHT0rZjtViVV4HGOO1LJEAhA596hgc/pepSJJ5MrEMD3robe/wAgFZce4rntZsHiJuoVJZeTtpmlaiJwDuBNZPQd7nZJd+YoJYse5PepRNg55/KsWGfgHsKspdbzgmkS2ayz7j7UyW5IGASM1myXDIQD0PcU5Zwe445osQ2aMlxvhYdyR+FPhbc3IIqjFIXwo6VetkPBI/Wqi9TKa0GyXVzdvDZWkYiVwTLIOo5xgfWu+8I2Qgs3kCgDiNfoOv6/yrkdNt0R/tMQDFlGR716HpaxJYQLEwZQvUdz3/WuvBxvPmfQ5MfU5aSgupaooor0zxAooooAKKKKACigUUAFFFFAC0UUUABpMUtJQAUUUUAFFFFABRRRQAUUUUAFZ+taX/atr5SuI5FO5GIyM+9aFFKUVJWZUZOL5luea6h4f1Wxkea5SP7MoxvRweT0461hzAgn2716rr8Pn6PdKBkhNw/DmvLZ1xmvLxFJU3ZHs4WvKqm5FB89TnnpTZJPlBz0qWQgdRkVEVVunpXG2dyIhOTkdCOtQzS4Gc5NTmIKOPrVS4jwM/0qbloqTXQjJ757U+xO6XcePb0qldRspO0fNjqav2MqwQZcHjnNWguakYwQAM5q6FAGcVjxaqjMQACM4LDpmrsd95mCAdo4q2NTuWJVVh0HrVCW380naMVb80vwoxnvmpIwpPJzgc00yuYz/IUZOB7cVH/ZwDFyRg+vatPdBuwXRCfXtUkiq6AK8f4nrTEZRslGTt5HPSpFswedu70xVpbdmbLYRc9SetNkurO1lAedT2wDxTuPl6Cw6YvDY98Y6etX47XBwCMdyKbb6jbzZIdcdiafuBdmDhu/BqUyHdFe4QRuVAFQquSSRip7uRU+8MNjNYdzqfkswBJA6g0MbkX7iNXQqQCD1rktRsxpt55kedjnke9akXiCNpAjOCfQ/wBKqa7L9r8vYB1qWiVItafch1AIy2KvNKdvHFZtnbsi8jkd60ootwO4f/WqBsI2bcAWNWUjBGSMGo0QA/MMYqzGBgg5x2FFxMtWwJIPvWjbxu7BUBZjwFHc1QiG08cV0HhiAXOrW64yFbcfwrSmuaSRhVlyxbMzTbi6swsFxaXMU3Qo8TAj9K9G8PwzxWW6dGjMh3BD1A9606K9Wlh1Td7nj18Y6seW1goooroOMKSlooAKKKKAEpaKKACgUUooAKKKKACkNLQaAEooooAKKKKAA0UUlAC0UUUAFFFFADZYxLG0Z6MCp/GvI76JreeWJhgoxU/ga9e9a858cWZtdVaRQQk43j69648ZG8bnfgJ2m49zlJ0J5HbmmRn5cHoKlLA5BqFvlOa8lntIeE5yTzUUkOFOOKcrZORzUynIIIqS0ZV1afL0zznFYepSGG3fhmwMYHQ118kW5SMY9qz5NOWSUbgG7AVcZCaueVt43/sq7dLnegB6uDgfj2rqdL8d2VxADHOrnHY5rdu/BVlcOXlgR9wwcrXPyfC7Rba9W8SyVctlliJXn8K6U4SM1GVzQPi53Gy3jLEdzVOXxNfzfKsqoDx7itu08I6PDGPKa5Vj2MpNOPgPT53G2Fic9RMw59etWqcTogmYSSzSkyTzyN2zmmyeY7DypnVs9QTXWx+CYIl24ulHtLuxT4vAy52rdTpnPL7Tj8cVXIjVQe7ZykkWounz3NyR7selQLEE4kZ8/wB7k13Fl4PhnxHPf3L9chWA6Zq3/wAIXpEaYe380kdZJCf60KIOPRs8wu9WjtT5f2vZ9Xxmiz8UXELYivgwHT5uMV6P/wAIT4eZw0tpYwse6Q7mb254pl34U8MrAVWySV14U+Wq4+uBTcYmMrrS5xUnxHSCBjdMgC/xFxXM6p8QZtSO3SLG5u3xgsqEKD9TXczeFbFrr93p8MSA5VtgzitSDQ4LeFY44VCg5HHJ+tZScImMoNnnOk2+u3Ki4u4DEWGSvUj8a7LS7R3UCc5A7d63YbHywQ2MetPigVHHGD9K55zvsVGNhkduAo44A6VMqZ9R2qfCovr9KYXHYYrJF3AKMfrUqL1JGPeoQecirCEBcE+5qiGTqpBA6Cuu8C2xN3LMRxGmB9TXIROWOM/nXpPg+z+zaQkjDDTHf+HQV2YSF53PPxs+Wm13NyiiivWPFCjrRRQAUUUUAFFFFABRRRQAUtJ3paACiiigAooooAQ0lONJQAUUUUAFFFFABRRRQAUUUUAFc942003mlGdBl7c7vqp6/wBDXQ010WVGRwGVgQQe4qZx5ouLLpzcJKSPDnyrmoy5bgitPxTpT6JqUsHPl53Rn1U9KxRKCo5H1NeFUg4uzPo6U1NXQ8EA1KJMDIOcVEGGM470qnHasjYlMrDknrTo1JbepwR2piqWU4Uip4FKjuvtQhlsnevzVDJGgHI49akiY7SG7UsoV1I7elaIGZssABylMie4iBAJ3E55qyV2OckkVFOcqeRx2x1rSM2i1JoeuoXC8Mdw6HHarEWoXDvg9xyaxpG8psgHP1qvLqUsa/KOB3q+dlur5HSNK8L7gq5/2TVaS+mc/fK/UViLrLyrtOenpUsVzk8nOaFNi9qa8ILDd5m4jpU8ce4/MOCelZsE7tjaBir9sWbIfjFRKTIcros+QHUjAGPu+pqNbUoTuz9atRlAAc8+tOMg24HJNZtkIzZEJbH6UzvnGatzLvBJ6VTkjOMj+dQwCSTbyMYPHSowufTNMJY9TxTQ+O/4YoQmywpC9aC/pVR7gZz3p0c24gc5NUkRI2dGs5NRvoLeMHMjAE+nr+levwxJBEkSDCIoUD2FcX8O9JOyTUpV6/u4s/qf6V29evhKfLG/c8PG1eafKugUUUV1HGFFFFABRRRQAUUUUAFFFFACiiiigAooooAKKKKACk6GloIoASiiigAooooAKKKKACiiigAooooA57xp4e/t3SyYVzdQZaP/AGh3WvF5Q8MpVsrg45r6Jry34oeFfsjNrNnH+6kOJ1H8Df3vof51xYujzLmR6GCxHK+RnGxyFu/PpUkbZbk8HtWbb3BAwatxyhu9eS0e0pGtAQRjn8DVpQAOn0rOtZs4Iq+jbvekO5KFBPbnvSeX2B6UqdasQnbnAHNO5RSaDf8AKcge9VWtskrhsepPWtsLu6CkaInqQdvHvVoaZgSWQI+5g+/eq/8AZ/mHhck9OK6FoQx54A744pY7SPGUbPY5FWM5v+yWXJIyfpU0elhQdyEe9dEtor5B6DvioPsyqxUMwx3ouBmwWmxyoTAPY+lXUQKQOAfQVOE2D19yKgMO99+4ZPak2A8LkA+p4qdUBXOetSRw7QCRTjGN2cYP61m2QyJ4wF6VTkVVzj8qvSOOAcZqhdSDdxSJZQlbDYyKpTT7GI6j2qW5cEk/drPuZdvGPz9KpIVx5lO/0NaOiWk2r6lBZ24y8jY+g7msMT5PFemfCfT1Nxc3jpmRYwqk/wAOTz/KumjT5pJM5cRV5INo9EsbOLT7SK1hGI4lCj396noor2DwG76hRQaKACiiigAoooxQAUUUlAC0opBzS0AFFFFABRRRQAUUUUAFFFFACdKKU0lAB3ooooAKKKKACiiigAo7UUUAFY3jFPM8N3qlQwKDj8RWzWT4qOPD97/uf1FRU+FmlL416nz9qtrJZS7kGYyeD6e1R29zwCTz39q6HUIBIrAgFT2NctdW7W0mYycehrxmrnvp2Nm1ugMYOa1ba53d65S2n3KBk59K07a9296ycTRSOkhcZBNWYZQpyAD7VlWl2HQDP51cjlAJ5+lTY0TLsDZfeAfYVIZ8ElmA96z1vNpIPTNOE2ckk8VbZoWpNmCwY5xSwzrtI6H0IqgbgDuCB0oF0n3T8wHc00FjTjZyS24bR60j4Zc9eelZ41Fdu0HgjqTUR1DPyq2KLDsaQB/iUY96VAhl3EjHTnpWYb92IXrj8zUyThvvEccc0mJo1GnRSMc+1QPcKzcVQe62vnOQPWo5LoAk5zU2IehPcyj17Vk3Vxhjyce1JcXxyRxz0rMmu13E5FUomTkSz3I29cVl3NwpPTHbrUd5cCQELx9TUECNIQOSPfvVpENmjpsPnTLnkda9n+G8Iis7rA6lefwNeV6TbbCGxzXrHw8Ui1uv95f5GunDP94jkxa/dM66iiivUPGCiiigAooooAKKKKACikpQKAFFFFFABRRRQAUUUUAFFFFABRRRQAUEUUUAJRQRRQAGiiigAooooAKKKKACuX8Wa/Y7LjQVlD372xuXiXnyogwG5vTJ4Hrz6UfEfx3Y/Dvwtda3eYd1Hl28GcGeY/dT6dyewBrx74C/b/Fdl4t8WapObm+1S6WBpT6ImcD0UFwAOwAocOZNF03aSZs3K4BHrWBqFmWJB69sd63592SrdQcH2NQPEsqlW69j3FeA3Zn0SV0cbNG8DZ5zmp4bkFeetal7YHOGAB6gjvWNcWrQt8vFO9wSsX4dQ2Dhv/r1etdT8wjLdPeub3EA9aalxJGeD9aGrlrQ7FdQQjlRS/2iiocdPauSbU3UfeNNXVn9SfxqeU0TR0st9lyNwFQNqJiGSeB+OKwf7Q3jJHNQy3jsMAgZ96qw+Y3xqbSZO72qZL8opII57VzEdwR/Fnj1qaPUAp+ZuB2osPmOiW8kL8g8d6uR3+3A3Vyv9p54XimjUtv8WD3NFhOZ08uobW5IOKz7jVsuQHwenWsOXUXfKg1D5xLZJzQo2MpSua73zNyzHn1NU5rvkgVSkuAnU/lRbxPcNkAge9UZk6M00gxz61uafZ9OPxqtp+nEtnFdHZWvAUDPYAdTUykEUWdOtvmAH/6q7jQfEdh4dhQ6jILeC6uI7ZZ2+4krA7Ax7BjwD0zgd65y1txAu0gZPUirHjnw9/anwm1+Mpuc2r3KDvujw4/9BrpwK5qnocuOaVO3c9WHIzS14t+zv8XP+Eu05vDWqz7tUsIw0Mrnm5gHH4svAPqMH1r2nFeq0eKFFFFABRRRQAUUUUAAFLRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUEUUUAJRQaKACiiigAqO4uIrSCSeeRIoolLu7nCqoGSSewpZpo7aF5ppEjjRSzO5ACgckknoK+Uvjj8dG8XSy+HvD0zLokbYnuBwb0g9vSMHoP4up4wKaVwOa+PHxRHxE8RCKydv7I0/dHag8eYx+9KR74AHoAPU17P+zhZ/Yvhhp5Iwbua4uCfXMhUfoor5JlYmQt6nNfYHwJkEnwu8PleNsTg/XzXrWCGXfEemGz1B3C4SU7h9e9YzRjqOK9I1vTV1WwKLgSL8yH0NeeyRNG7IylXU4IPavCx1F06nMtme7g63PCz3RUkiV1KuuQazrmw4PAZf5VtGPj0NQPGea407HXY5S608cnBI9R2rMlgaPJHIPArsprI5LLyD2rOuLFWzgYNaJ3JsclM4UfMCD71CW5yCMe1bl1puCcrgdqyrjTSpJQYPtQUivvzwrHmkLyDJyc+lMa3nj6MR9RUbG6xgBW/CmgJv3m7O6gliOtQCS524Ma+1Cm6z9xfypg0T7yoGSeaUPuyahWC6c9cfSp7fSJXOWLMT6mgm4guUXq25vRaRZJZThF2j1rRi0MLyRz6VoWukkN90AfSgTMuzsWLZcE/WuhsdMOATwvuOT9KuWmmIjAkAn35ratbFnwWBRf1NS5Aola1tAMLHHuPp/jWza2oi+bO5z1b+gp0cGzCoAig/XNWogOn5Vm2VYnsrNry4jgQcseT6Cus1G2SXS5dPKjy5omgK+zKV/rUPh7TTZxG5mGJJBwD2FXZfmlUnoCK93AUPZw5pbs8THV+efKtkfCvhjWr7wb4ittSsJPLu7CbKnsdpwVPsRkH2Nfcvgbxpp3jrQLfVtPkUFgBNDnLQSY5U/0PcV8H6yVXWb8ofl+1S4/77auo+H3xD1bwDq8WpadJvj4S4tnPyXCf3T6Edj1H5iupo4j7pornfA3jvRvH+jJqekz7sYWaBiPMt3/ALrD+R6HtXRVmAUUUUAFLRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRiiigBKp6tq9hoenz6jqV1FaWlupeWaVsKo/z26mnaql++nzjS5LaK+2HyWuUZow3bcFIJH0NfGvxs134jNqqaX44Z4kjYvbxwIEtZP9tCOH/Ekj2ppAafxm+PV546aXRtFaWy0EHDA8SXmO7+i+i/n6Dx9n4PPWot2eaQk4qgAt1FfWn7ONwJ/hfZJuyYZ54/p85P8AWvkrtX0v+ypqHn+GdXsC2TbXokA9A6D+qmrhuB7rASOvSsPxN4f84G+tVy4H7xQPvD1+tbqjgVPG2Rg1NalGpHlka0asqcuZHlwXJ5xTZIga63xH4ZK772xXjrJEB+o/wrlVPNfOV6MqUuWR9BRrRqx5olYpgGq8tmsuf4T61p7AT60xohWSZs0YFzamMHcoxWfJYo3bB/nXUSxEjBAxVSWxjbgAqapSFY5aawB7BhVf7CgOCu32NdNLp7qMgbh3qo1oRnOatMDDOnx7sjGKd/Z6nopJ+lbQj246cetPSIk5yQKdxGVFpjf3OP8Aa4q0lhtOSfwBrSW28zsT9OatQ6cxHzLtHuaVxNGZDbqDhVAz6DmtG200tyQw+oxV+3sljOcZ47DFWtvsPz5qXIEiC3s0i5xk+pq2uEBJ+tII+PvfgO9PVcADIFS3cY6NtxBHU9K6Dw9oRnkW7uB+6X7oP8R/wqLw/oEl663FwGS3U8Z6yf8A1q68lUUIgAUDAAr0cFhHJ889jzsZi1H3IbjJ3HQVn38vkWkspONiM2foM1dPJrl/iRqA0nwTrl5naYrKUg+5Ugfqa9uKPGPiG4kMs8kx/wCWjs/5kn+tOjlwMVATgAegAoBzWTGdL4Q8b6v4H1mPVdGujDMvyuh5SZe6uvcfy7V9hfC/4taN8StOzbkWuqQrm4sXbLL/ALSH+JPft3r4Z5J9a97+C3wD1+/u7bxFrs95oVkmJIYYnMV1OPqOY1P/AH0R2HWkwPqUc0tNjQRRqi5woAGSSfzPWnVABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAVl+I/DGj+LtLl0vW9PgvrSXrHKvQ+qnqp9xzWpRQB8lfE39l/WfDxl1Hwi0usacMsbRv8Aj6hHt2kH0w3sa8MlR4pGjkRkkQlWRhgqe4IPQ+1fpRXBfEP4K+EviMjTahZ/ZNSxhdQtMJL7buzj2YH6iqTA+Eh0r239ljVPsvirVtNJwLu0WUD1Mb/4PWL4+/Z18Y+CfNurWD+3NMTJ+02aEyIPV4uo+oyKxfgxq/8AYfxL0WZm2pLMbWT6OCuD+OKuD1A+2EXgU4LimxHKj3qULmtGA9Hzwa57xB4UW53XdgAsvVoh0f6ehroAKkQ9qwrUY1I8sjWlWlSlzRPLCDGxR1IKnBB4INIWB6V6Brnhq31hDIuIrkDiQDr7GuCvLG4065aC5jKOP1HqK8HEYWVJ+R7uHxUaq8yNsY7VFsHNPLe5pM8ZrlOoiePPTNQuuTymfp1qwxFRhQT707hYh8pFB+QfiuadGFx9xePbFShckjrT0TGSxGPcVXMwaI48k/dAH0qxhiOmB9aQEA9T+FP3qOn8qVxWHov0p6oB3A/CoVk7A4qSJXnkEcaNJIxwqqMk0biYrEDua6XQPDDTbbq9TZH1WI9W9z6D2q7oHhSOzK3V6FefqqdVT/E10DGvVwuCt71T7jysVjvsU/vGMQqhVAAHAxUTZNSFc0hWvWR5RERXlP7Ruqf2f8OLqBWw97NFb/UFsn9Fr1g8V4R+0LpmueMdT0Twx4f0251CcGS6lWJflQcKpdjwo5PJNV0EfMxyTnmul8EfDzxH8Qb/AOy6Dp7zKpxLcv8AJBD/ALz9M+wyfavePh/+yna2xjvvGt4Ltxhhp9oxWMezycFvouB7mvfdM0qw0WyisdNs4LO1hG1IYECIo9gKwchnmnwv/Z98P+AjFqOobNY1peRcSp+6gP8A0zQ9D/tHJ+leq0UVIBRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAVxXi34PeEPF90moXWmraanG6yJfWf7qYMDkFscNz/AHga7WigDNTTZYEAEnm4HUjBNJtKnDAg+9adBUMMEAj3rT2j6gUFGeacFqybdO2RTTAw6EGjmAjXiqmp6Va6vbmK4TkfdcfeU+oNXSjDqKTFJpSVmVGTi7o8w1rRLrRZsTAPCx+SUDg+x9D7VlNLk8Y/OvYbm2iu4XhmjWSNxhlYZBrz/wAQ+EJdNLXFmGltepHV4/8AEe9eNicE4e9T2PawmOU/cqaM50ycdTmkVwKaQQCc8UwNnqBXnnpE6vhun5U8yj1/KqqnnpT8nuM5oESlx6n8RQJQv8YqPofuitfQPDt1rkoIBit1PzSkdfYepq4QlN8sVqZzqRguaT0KunWV1q1yLe0jMjdSTwqj1Jr0XQ/D9to0QYASXDD55MfoPQVc03S7bS7YW9tGEUdT3Y+pPrVraT0ya9rDYSNL3pas8PFYx1fdjohp5pCM1IImPbFPEPqa7LnEV8ULE79B+dWhGq9BTqOYCulmucud3sOlTJGkediKueuB1p1FS22AUUUUgCiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKCAeooooATy19KY8KMOc0UU0BxHivw1YROk8IkiMhO5UI259cYrkLm1SEKV3c8c0UV4eLSVR2PocJJukrkCqA+PetG006K5Yh2ccgcEf4UUVzROh7HS6N4M026kVpmuHA52lgAfyFdtBaQ28axxIERRgKOABRRXtYNJQujw8dJudmyQKo7CloorqOIKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigD//Z" alt="Ihsan Nurrochman">
+  </div>
+</section>
 
-  <div class="hero-right">
-    <div class="photo-frame">
-      <div class="photo-placeholder">
-        <div class="avatar-icon">
-          <img src="ihsan.jpeg" alt="Ihsan">
-        </div>
-        
-        <div class="photo-name">Ihsan Nurrochman</div>
-        <div class="photo-role">Project Engineer</div>
-        <div class="stats-strip">
-          <div class="stat-box">
-            <div class="stat-number">7+</div>
-            <div class="stat-label">Tahun Exp</div>
-          </div>
-          <div class="stat-box">
-            <div class="stat-number">5+</div>
-            <div class="stat-label">Proyek</div>
-          </div>
-          <div class="stat-box">
-            <div class="stat-number">3</div>
-            <div class="stat-label">Perusahaan</div>
-          </div>
-        </div>
-      </div>
+<section id="about">
+  <div class="hd rv"><small>Discover</small><h2 data-k="n2"></h2></div>
+  <div class="ab rv">
+    <img id="p2" alt="Ihsan Nurrochman">
+    <div>
+      <div class="two"><div><h3 data-k="who"></h3><p data-k="who_p"></p></div><div><h3 data-k="appr"></h3><p data-k="appr_p"></p></div></div>
+      <div class="pd"><h3 data-k="pdt"></h3>
+        <div class="dg">
+          <div><small data-k="nm"></small><b>Ihsan Nurrochman</b></div><div><small data-k="lc"></small><b>Jakarta</b></div>
+          <div><small data-k="ph"></small><b>083819091201</b></div><div><small>Email</small><b>isannica@gmail.com</b></div>
+          <div><small data-k="ed"></small><b>Universitas Terbuka</b></div><div><small data-k="ce"></small><b>TIA-942-C-2024 Rated-3</b></div>
+        </div></div>
     </div>
   </div>
 </section>
 
-<div class="divider"></div>
+<div class="mq"><div id="m1"></div></div><div class="mq"><div class="r" id="m2"></div></div>
 
-<!-- PROFIL -->
-<section id="profil">
-  <div class="section-label">01 / Profil</div>
-  <h2 class="section-title">Tentang Saya</h2>
-  <div class="profil-card">
-    <p class="profil-text">
-      Profesional berpengalaman di bidang <strong style="color:var(--gold)">Managed Service, Network Engineer,</strong> dan <strong style="color:var(--gold)">Project Engineer Data Center</strong> pada lingkungan ISP dan infrastruktur TI. Memiliki keahlian dalam perancangan, implementasi, monitoring, troubleshooting, serta pemeliharaan jaringan dan infrastruktur data center — termasuk routing, switching, TCP/IP, fiber optic, structured cabling, dan sistem pendukung.
-      <br><br>
-      Berpengalaman dalam pengelolaan proyek, incident handling, preventive maintenance, serta memastikan layanan dan proyek berjalan sesuai SLA, standar kualitas, anggaran, dan jadwal. Memiliki kemampuan analisis, komunikasi, dan koordinasi yang kuat untuk mendukung stabilitas operasional, keberhasilan proyek, dan kepuasan pelanggan.
-    </p>
-  </div>
+<section id="exp">
+  <div class="hd rv"><small>Career Path</small><h2 data-k="expt"></h2></div>
+  <div class="tl" id="tl"></div>
 </section>
 
-<div class="divider"></div>
-
-<!-- PENGALAMAN -->
-<section id="pengalaman">
-  <div class="section-label">02 / Pengalaman</div>
-  <h2 class="section-title">Riwayat Pekerjaan</h2>
-  <div class="timeline">
-
-    <div class="timeline-item">
-      <div class="timeline-dot current"></div>
-      <div class="exp-card">
-        <div class="exp-header">
-          <div>
-            <div class="exp-role">Project Engineer</div>
-            <div class="exp-company">PT Artha Telekomindo — SCBD Data Center</div>
-          </div>
-          <div style="display:flex;gap:0.5rem;align-items:center;flex-wrap:wrap">
-            <span class="exp-current">● Aktif</span>
-            <span class="exp-period">Nov 2023 — Sekarang</span>
-          </div>
-        </div>
-        <ul class="exp-tasks">
-          <li>Merencanakan, mengoordinasikan, dan mengawasi pelaksanaan proyek infrastruktur data center.</li>
-          <li>Mengelola implementasi instalasi structured cabling, fiber optic, rack, CCTV, access control, dan perangkat pendukung lainnya.</li>
-          <li>Mengerjakan sertifikasi desain TIA-942 Rated 3 untuk data center kelas enterprise.</li>
-          <li>Memperbarui layout dan dokumentasi infrastruktur data center secara berkala.</li>
-          <li>Penyusunan dokumen teknis, Bill of Quantity (BOQ), dan laporan proyek.</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <div class="exp-card">
-        <div class="exp-header">
-          <div>
-            <div class="exp-role">Network Engineer</div>
-            <div class="exp-company">PT Artha Telekomindo</div>
-          </div>
-          <span class="exp-period">Sep 2019 — Nov 2023</span>
-        </div>
-        <ul class="exp-tasks">
-          <li>Troubleshooting jaringan internet, LAN, dan Wi-Fi pada lingkungan ISP skala enterprise.</li>
-          <li>Instalasi, terminasi, dan pengujian kabel fiber optic sesuai standar industri.</li>
-          <li>Penarikan kabel fiber optic aerial maupun duct untuk kebutuhan jaringan.</li>
-          <li>Troubleshooting koneksi GPON, Metro Ethernet, dan wireless untuk pelanggan korporat.</li>
-          <li>Dokumentasi instalasi, aktivasi layanan, dan hasil pengujian jaringan.</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <div class="exp-card">
-        <div class="exp-header">
-          <div>
-            <div class="exp-role">Managed Service Engineer</div>
-            <div class="exp-company">PT Fiber Network Indonesia</div>
-          </div>
-          <span class="exp-period">Nov 2018 — Mei 2019</span>
-        </div>
-        <ul class="exp-tasks">
-          <li>Troubleshooting jaringan internet, LAN, dan Wi-Fi untuk klien managed service.</li>
-          <li>Konfigurasi routing dan switching pada perangkat jaringan enterprise.</li>
-          <li>Instalasi dan konfigurasi perangkat Unifi untuk kebutuhan wireless jaringan.</li>
-        </ul>
-      </div>
-    </div>
-
-  </div>
+<section id="skills">
+  <div class="hd rv"><small>Tech Stack</small><h2 data-k="skt"></h2></div>
+  <div id="sk"></div>
 </section>
 
-<div class="divider"></div>
-
-<!-- KEAHLIAN -->
-<section id="keahlian">
-  <div class="section-label">03 / Keahlian</div>
-  <h2 class="section-title">Keterampilan Teknis</h2>
-  <div class="skills-grid">
-
-    <div class="skill-category">
-      <div class="skill-category-title">Infrastruktur & Jaringan</div>
-      <div class="skill-item">
-        <div class="skill-name-row"><span class="skill-name">Fiber Optic (Instalasi & Terminasi)</span><span class="skill-pct">95%</span></div>
-        <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="95"></div></div>
-      </div>
-      <div class="skill-item">
-        <div class="skill-name-row"><span class="skill-name">Structured Cabling</span><span class="skill-pct">90%</span></div>
-        <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="90"></div></div>
-      </div>
-      <div class="skill-item">
-        <div class="skill-name-row"><span class="skill-name">Routing & Switching</span><span class="skill-pct">85%</span></div>
-        <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="85"></div></div>
-      </div>
-      <div class="skill-item">
-        <div class="skill-name-row"><span class="skill-name">GPON / Metro Ethernet</span><span class="skill-pct">85%</span></div>
-        <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="85"></div></div>
-      </div>
-      <div class="skill-item">
-        <div class="skill-name-row"><span class="skill-name">TCP/IP & Wireless</span><span class="skill-pct">80%</span></div>
-        <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="80"></div></div>
-      </div>
-    </div>
-
-    <div class="skill-category">
-      <div class="skill-category-title">Data Center & Proyek</div>
-      <div class="skill-item">
-        <div class="skill-name-row"><span class="skill-name">Rack Design & Implementation</span><span class="skill-pct">92%</span></div>
-        <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="92"></div></div>
-      </div>
-      <div class="skill-item">
-        <div class="skill-name-row"><span class="skill-name">Project Management</span><span class="skill-pct">88%</span></div>
-        <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="88"></div></div>
-      </div>
-      <div class="skill-item">
-        <div class="skill-name-row"><span class="skill-name">TIA-942 Standard</span><span class="skill-pct">80%</span></div>
-        <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="80"></div></div>
-      </div>
-      <div class="skill-item">
-        <div class="skill-name-row"><span class="skill-name">CCTV & Access Control</span><span class="skill-pct">75%</span></div>
-        <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="75"></div></div>
-      </div>
-      <div class="skill-item">
-        <div class="skill-name-row"><span class="skill-name">Preventive Maintenance</span><span class="skill-pct">85%</span></div>
-        <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="85"></div></div>
-      </div>
-    </div>
-
-    <div class="skill-category">
-      <div class="skill-category-title">Tools & Software</div>
-      <div class="skill-item">
-        <div class="skill-name-row"><span class="skill-name">AutoCAD</span><span class="skill-pct">80%</span></div>
-        <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="80"></div></div>
-      </div>
-      <div class="skill-item">
-        <div class="skill-name-row"><span class="skill-name">Microsoft Office Suite</span><span class="skill-pct">85%</span></div>
-        <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="85"></div></div>
-      </div>
-      <div class="skill-item">
-        <div class="skill-name-row"><span class="skill-name">Unifi Controller</span><span class="skill-pct">82%</span></div>
-        <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="82"></div></div>
-      </div>
-      <div class="skill-item">
-        <div class="skill-name-row"><span class="skill-name">Dokumentasi Teknis & BOQ</span><span class="skill-pct">90%</span></div>
-        <div class="skill-bar-bg"><div class="skill-bar-fill" data-width="90"></div></div>
-      </div>
-    </div>
-
-  </div>
+<section id="proj">
+  <div class="hd rv"><small>Portfolio</small><h2 data-k="prt"></h2></div>
+  <div class="pg" id="pg"></div>
 </section>
 
-<div class="divider"></div>
-
-<!-- PROYEK -->
-<section id="proyek">
-  <div class="section-label">04 / Proyek</div>
-  <h2 class="section-title">Proyek Unggulan</h2>
-  <div class="projects-grid">
-
-    <div class="project-card">
-      <div class="project-year">2023</div>
-      <div class="project-title">PIC Ekspansi Data Hall 2 — SCBD Data Center</div>
-      <span class="project-type">Data Center Expansion</span>
-      <div class="project-number">01</div>
-    </div>
-
-    <div class="project-card">
-      <div class="project-year">2023</div>
-      <div class="project-title">Pengadaan Rack Colocation — SCBD Data Center</div>
-      <span class="project-type">Infrastructure Procurement</span>
-      <div class="project-number">02</div>
-    </div>
-
-    <div class="project-card">
-      <div class="project-year">2025</div>
-      <div class="project-title">PIC Ekspansi Data Center Lantai 6 — SCBD Data Center</div>
-      <span class="project-type">Floor Expansion</span>
-      <div class="project-number">03</div>
-    </div>
-
-    <div class="project-card">
-      <div class="project-year">2024–2025</div>
-      <div class="project-title">PM Instalasi Backbone Data Center</div>
-      <span class="project-type">Project Management</span>
-      <div class="project-number">04</div>
-    </div>
-
-    <div class="project-card">
-      <div class="project-year">Ongoing</div>
-      <div class="project-title">Rack Colocation Implementasi Customer — SCBD Data Center</div>
-      <span class="project-type">Customer Implementation</span>
-      <div class="project-number">05</div>
-    </div>
-
-  </div>
+<section id="cred">
+  <div class="hd rv"><small>Credentials</small><h2 data-k="crt"></h2></div>
+  <div class="cr rv" id="cr"></div>
 </section>
 
-<div class="divider"></div>
-
-<!-- SERTIFIKASI -->
-<section id="sertifikasi">
-  <div class="section-label">05 / Sertifikasi & Kompetensi</div>
-  <h2 class="section-title">Area Keahlian Utama</h2>
-  <div class="cert-list">
-    <div class="cert-item">
-      <div class="cert-icon">
-        <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>
-      </div>
-      <div class="cert-name">TIA-942 Data Center Standard — Rated 3 Certification Process</div>
+<section id="contact">
+  <div class="hd rv"><small>Get in touch</small><h2 data-k="n5"></h2></div>
+  <div class="ct rv">
+    <div class="l">
+      <a href="https://wa.me/6283819091201" target="_blank" rel="noopener"><small>WhatsApp</small>083819091201</a>
+      <a href="mailto:isannica@gmail.com"><small>Email</small>isannica@gmail.com</a>
+      <a href="https://linkedin.com/in/ihsan-nurrochman-09a615151" target="_blank" rel="noopener"><small>LinkedIn</small>ihsan-nurrochman-09a615151</a>
+      <a href="https://ihsannurrochman-hue.github.io/CV-Ihsan" target="_blank" rel="noopener"><small>Portfolio</small>ihsannurrochman-hue.github.io/CV-Ihsan</a>
+      <a id="dl2" download><small>CV</small><span id="dl2t"></span></a>
     </div>
-    <div class="cert-item">
-      <div class="cert-icon">
-        <svg viewBox="0 0 24 24"><path d="M1 9l2 2c4.97-4.97 13.03-4.97 18 0l2-2C16.93 2.93 7.08 2.93 1 9zm8 8l3 3 3-3c-1.65-1.66-4.34-1.66-6 0zm-4-4l2 2c2.76-2.76 7.24-2.76 10 0l2-2C15.14 9.14 8.87 9.14 5 13z"/></svg>
-      </div>
-      <div class="cert-name">GPON & Metro Ethernet Network Configuration</div>
-    </div>
-    <div class="cert-item">
-      <div class="cert-icon">
-        <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-5 11.5v-3h-6v3L5 12l4-3.5v3h6v-3L19 12l-4 3.5z"/></svg>
-      </div>
-      <div class="cert-name">Fiber Optic Installation & Termination Specialist</div>
-    </div>
-    <div class="cert-item">
-      <div class="cert-icon">
-        <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z"/></svg>
-      </div>
-      <div class="cert-name">Project Management & SLA Compliance</div>
-    </div>
-    <div class="cert-item">
-      <div class="cert-icon">
-        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-      </div>
-      <div class="cert-name">Structured Cabling System Design & Implementation</div>
-    </div>
-    <div class="cert-item">
-      <div class="cert-icon">
-        <svg viewBox="0 0 24 24"><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/></svg>
-      </div>
-      <div class="cert-name">Incident Handling & Preventive Maintenance Planning</div>
-    </div>
+    <form class="cd" id="fm">
+      <h3 data-k="send"></h3>
+      <label data-k="nm"></label><input id="fn" required placeholder="John Doe">
+      <label>Email</label><input id="fe" type="email" required placeholder="johndoe@example.com">
+      <label data-k="msg"></label><textarea id="ft" rows="5" required></textarea>
+      <button type="submit" data-k="sendb"></button>
+    </form>
   </div>
 </section>
+<footer>© 2026 Ihsan Nurrochman</footer>
 
-<div class="divider"></div>
-
-<!-- PENDIDIKAN -->
-<section id="pendidikan">
-  <div class="section-label">06 / Pendidikan</div>
-  <h2 class="section-title">Latar Belakang Akademik</h2>
-  <div class="edu-grid">
-    <div class="edu-card">
-      <div class="edu-icon">
-        <svg viewBox="0 0 24 24"><path d="M12 3L1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/></svg>
-      </div>
-      <div class="edu-degree">S1 Sistem Informasi</div>
-      <div class="edu-school">Universitas Terbuka</div>
-      <div class="edu-year">2024 — Sekarang</div>
-    </div>
-    <div class="edu-card">
-      <div class="edu-icon">
-        <svg viewBox="0 0 24 24"><path d="M12 3L1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/></svg>
-      </div>
-      <div class="edu-degree">SMK Teknik Komputer & Jaringan</div>
-      <div class="edu-school">SMK Wikrama Kota Bogor</div>
-      <div class="edu-year">2015 — 2018</div>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <div class="footer-left">
-    <div class="footer-name">Ihsan Nurrochman</div>
-    <div class="footer-role">Project Engineer · Network · Data Center</div>
-  </div>
-  <div class="footer-right">
-    <a href="mailto:ihsaann20@gmail.com" class="btn-primary">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-      Kirim Email
-    </a>
-    <a href="https://www.linkedin.com/in/ihsan-nurrochman-09a615151" target="_blank" class="btn-secondary">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
-      LinkedIn
-    </a>
-  </div>
-</footer>
-
-<!-- SCROLL TO TOP -->
-<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
-  <svg viewBox="0 0 24 24"><path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/></svg>
-</button>
+<div id="md"><div class="cd"><button class="x" aria-label="Close">✕</button><div id="mdc"></div></div></div>
+<button id="fab" aria-label="AI">AI</button>
+<div id="ch"><div class="chh"><i>AI</i><div><b data-k="ast"></b><small>● Online</small></div><button id="cx" aria-label="Close">✕</button></div><div id="ms"></div><div class="qs" id="qs"></div><form id="cf"><input id="ci" autocomplete="off"><button aria-label="Send">➤</button></form></div>
 
 <script>
-  // ── Scroll & Hide-Show Nav ──
-  const nav = document.querySelector('nav');
-  const scrollBtn = document.getElementById('scrollTop');
-  let lastScrollY = window.scrollY;
-
-  window.addEventListener('scroll', () => {
-    const currentScroll = window.scrollY;
-    scrollBtn.classList.toggle('show', currentScroll > 400);
-
-    // Pada desktop, sembunyikan nav saat scroll ke bawah, munculkan saat scroll ke atas
-    if (window.innerWidth > 768) {
-      if (currentScroll > lastScrollY && currentScroll > 120) {
-        nav.classList.add('hide');
-      } else {
-        nav.classList.remove('hide');
-      }
-    }
-    lastScrollY = currentScroll;
-  });
-
-  // ── Intersection Observer for animations ──
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        // Animate skill bars
-        entry.target.querySelectorAll('.skill-bar-fill').forEach(bar => {
-          bar.style.width = bar.dataset.width + '%';
-        });
-      }
-    });
-  }, { threshold: 0.15 });
-
-  document.querySelectorAll('.timeline-item, .project-card, .skill-category, .edu-card, .cert-item').forEach(el => observer.observe(el));
-
-  // Also trigger skill bars for initially visible items
-  document.querySelectorAll('.skill-bar-fill').forEach(bar => {
-    const rect = bar.getBoundingClientRect();
-    if (rect.top < window.innerHeight) {
-      bar.style.width = bar.dataset.width + '%';
-    }
-  });
-
-  // ── Active nav on scroll ──
-  const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('nav ul a');
-
-  window.addEventListener('scroll', () => {
-    let current = '';
-    sections.forEach(sec => {
-      if (window.scrollY >= sec.offsetTop - 200) current = sec.getAttribute('id');
-    });
-    navLinks.forEach(a => {
-      a.classList.remove('active');
-      if (a.getAttribute('href') === '#' + current) a.classList.add('active');
-    });
-  });
-
-  // ── Staggered animation for project cards ──
-  document.querySelectorAll('.project-card').forEach((card, i) => {
-    card.style.transitionDelay = (i * 0.1) + 's';
-  });
+const UI={
+n1:["Beranda","Home"],n2:["Tentang","About"],n3:["Pengalaman","Experience"],n4:["Proyek","Projects"],n5:["Kontak","Contacts"],
+hi:["Halo, saya","Hi, I'm"],explore:["Lihat Karya","Explore Work"],dl:["Unduh CV","Download CV"],
+hero_d:["Menangani proyek data center dari ujung ke ujung: assessment kebutuhan pelanggan, BOQ, tender vendor, hingga colocation siap pakai dan serah terima.","I manage data center projects end to end: customer requirement assessment, BOQ, vendor tendering, through to ready-to-use colocation and handover."],
+s1:["7+ Tahun Pengalaman","7+ Years of Experience"],s3:["17 Pelanggan Colocation","17 Colocation Customers"],
+who:["Siapa Saya","Who Am I"],who_p:["Project Engineer Data Center dengan pengalaman lebih dari 7 tahun di jaringan dan infrastruktur data center.","Data Center Project Engineer with more than 7 years of experience in networking and data center infrastructure."],
+appr:["Cara Kerja Saya","My Approach"],appr_p:["Saya menangani proyek dari ujung ke ujung: assessment, BOQ, tender vendor, hingga colocation siap pakai dan serah terima. Terbiasa berkoordinasi lintas tim dan vendor.","I manage projects end to end: assessment, BOQ, vendor tendering, through to ready-to-use colocation and handover. Used to coordinating across teams and vendors."],
+pdt:["Detail Pribadi","Personal Details"],nm:["Nama","Name"],lc:["Lokasi","Location"],ph:["Telepon","Phone"],ed:["Pendidikan","Education"],ce:["Sertifikasi","Certification"],
+expt:["Pengalaman Kerja","Work Experience"],skt:["Keahlian","Skills"],prt:["Proyek Pilihan","Selected Works"],crt:["Sertifikasi & Pendidikan","Certification & Education"],
+send:["Kirim email langsung.","Send an Email directly."],msg:["Pesan","Message"],sendb:["KIRIM PESAN","SEND MESSAGE"],
+vd:["LIHAT DETAIL","VIEW DETAILS"],ast:["Asisten Ihsan","Ihsan Assistant"],ask:["Tanyakan apa saja…","Ask me anything…"],
+hello:["Halo! Saya asisten Ihsan. Ada yang bisa saya bantu terkait pengalaman, proyek, atau keahliannya?","Hello! I'm Ihsan's assistant. Anything I can help with about his experience, projects, or skills?"],
+unduh:["Unduh versi Indonesia","Download Indonesian version"],valid:["Berlaku 13 Agt 2026 – 12 Agt 2027","Valid 13 Aug 2026 – 12 Aug 2027"]};
+const J=[
+{t:["Project Engineer Data Center","Data Center Project Engineer"],c:"PT Artha Telekomindo (Arthatel)",y:["Nov 2023 – Sekarang","Nov 2023 – Present"],g:["BOQ","RFQ","Colocation","SLD","UPS","HSSD"],b:[
+["Desain solusi","Solution design","assessment kebutuhan end user (colocation, cross-connect, network paralel) dan penyusunan BOQ.","end-user requirement assessment (colocation, cross-connect, parallel network) and BOQ preparation."],
+["Pengadaan dan tender","Procurement and tendering","RFQ, mencari dan mengundang vendor, menyusun dokumen dan memimpin sesi aanwijzing, serta administrasi pengadaan.","RFQ, vendor sourcing and invitation, aanwijzing documents and sessions, and procurement administration."],
+["Delivery colocation","Colocation delivery","kickoff meeting, penempatan rack, patching cross-connect, pengujian power dan cross-connect.","kickoff meetings, rack placement, cross-connect patching, power and cross-connect testing."],
+["Handover","Handover","mendata seluruh aset dan menyusun dokumen serah terima kepada pelanggan.","recording all assets and preparing handover documents for customers."],
+["Peningkatan daya","Power upgrades","pengadaan penggantian UPS dan HSSD.","procurement for UPS and HSSD replacement."],
+["Ekspansi","Expansion","PIC Data Hall 2 dan Data Hall lantai 6.","PIC for Data Hall 2 and the 6th-floor Data Hall."],
+["Sertifikasi Rated-3","Rated-3 certification","menyusun seluruh design layout dan Single Line Diagram (SLD) data center lantai 6 untuk sertifikasi desain TIA-942-C-2024.","prepared all design layouts and Single Line Diagrams (SLD) for the 6th-floor data center for TIA-942-C-2024 design certification."]]},
+{t:["Network Engineer","Network Engineer"],c:"PT Artha Telekomindo (Arthatel)",y:["Sep 2019 – Okt 2023","Sep 2019 – Oct 2023"],g:["Switch","ONT","OTDR","BERT","iPerf"],b:[
+["","","Instalasi kabel jaringan dan konfigurasi switch.","Network cable installation and switch configuration."],
+["","","Setting modem ONT.","ONT modem setup."],
+["","","Pengetesan iPerf, speedtest, BERT test, dan OTDR.","Network testing with iPerf, speedtest, BERT test, and OTDR."],
+["","","Menyusun dokumentasi teknis pekerjaan jaringan.","Prepared technical documentation for network work."]]},
+{t:["Configuration and Preparation Network","Configuration and Preparation Network"],c:"PT Fiber Networks Indonesia",y:["Nov 2018 – Mei 2019 (7 bln)","Nov 2018 – May 2019 (7 mo)"],g:["Network devices","Deployment"],b:[
+["","","Mempersiapkan dan mengonfigurasi perangkat jaringan sebelum deployment.","Prepared and configured network devices before deployment."]]}];
+const P=[
+{y:"2026",r:"PM",t:["Instalasi Backbone Fiber Optik","Fiber Optic Backbone Installation"],d:["Proyek instalasi backbone fiber optik, dengan peran Project Manager.","Fiber optic backbone installation project, in the role of Project Manager."]},
+{y:"2025",r:"PIC",t:["Ekspansi Data Center Lantai 6","6th-Floor Data Center Expansion"],d:["Ekspansi data center lantai 6. Lingkup: Fitout, M&E, CCTV, FSS.","6th-floor data center expansion. Scope: Fitout, M&E, CCTV, FSS."]},
+{y:"2024",r:"PIC",t:["Ekspansi Data Hall 2","Data Hall 2 Expansion"],d:["Ekspansi Data Hall 2 di SCBD Data Center, sebagai PIC.","Expansion of Data Hall 2 at SCBD Data Center, as PIC."]},
+{y:"SCBD DC",r:"Procurement",t:["Pengadaan Rack & RPDU","Rack & RPDU Procurement"],d:["Pengadaan 30 rack 45U dan 40 unit RPDU.","Procurement of 30 units of 45U racks and 40 RPDU units."]},
+{y:"SCBD DC",r:"Delivery",t:["Implementasi Colocation Pelanggan","Customer Colocation Implementation"],d:["17 pelanggan: 2 cage, 24 full rack, dan 1½ rack.","17 customers: 2 cages, 24 full racks, and 1½ racks."]}];
+const S=[
+[["Data Center","Data Center"],["Colocation dan cross-connect hingga handover.","Colocation and cross-connect through to handover."],["Colocation","Cross-connect","Rack planning","MMR patching","Asset management","Handover"]],
+[["Jaringan","Networking"],["Konfigurasi, kabel, dan pengetesan jaringan.","Network configuration, cabling, and testing."],["Switch config","Network cabling","Fiber splicing","ONT setup","iPerf","Speedtest","BERT test","OTDR"]],
+[["Desain","Design"],["Layout, diagram, dan dokumen teknis.","Layouts, diagrams, and technical documents."],["AutoCAD","SLD","BOQ","Tech docs"]],
+[["Proyek & Pengadaan","Projects & Procurement"],["Dari RFQ hingga kickoff.","From RFQ to kickoff."],["RFQ","Vendor tendering","Aanwijzing","Kickoff"]],
+[["Infrastruktur","Infrastructure"],["Daya dan proteksi kebakaran.","Power and fire protection."],["UPS","HSSD","Power upgrades"]]];
+const R=[["Data Center Project Engineer","Network Engineer","Colocation","TIA-942 Rated-3"]];
+let L=0,TH="light";try{L=+localStorage.getItem("cvL")||0;TH=localStorage.getItem("cvT")||"light"}catch(e){}
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)],pdf=["CV_Ihsan_Nurrochman_ID.pdf","CV_Ihsan_Nurrochman_EN.pdf"];
+function render(){
+  document.documentElement.lang=L?"en":"id";document.documentElement.dataset.t=TH;$("#tb").textContent=TH=="dark"?"☾":"☀";$("#lb").textContent=L?"EN":"ID";
+  $$("[data-k]").forEach(e=>e.textContent=UI[e.dataset.k][L]);
+  $("#dl").href=$("#dl2").href=pdf[L];$("#dl2t").textContent=UI.dl[L]+" ("+(L?"EN":"ID")+")";$("#ci").placeholder=UI.ask[L];
+  $("#tl").innerHTML=J.map(j=>`<article class="it rv"><div class="cd"><div class="y">${j.y[L]}</div><h3>${j.t[L]}</h3><div class="c">${j.c}</div><ul>${j.b.map(x=>`<li>${x[L]?`<b>${x[L]}:</b> `:""}${x[2+L]}</li>`).join("")}</ul><div class="tg">${j.g.map(g=>`<span>${g}</span>`).join("")}</div></div></article>`).join("");
+  $("#sk").innerHTML=S.map(s=>`<div class="sk rv"><div><h3>${s[0][L]}</h3><p>${s[1][L]}</p></div><div class="tiles">${s[2].map(t=>`<div class="tile"><i>${t[0]}</i>${t}</div>`).join("")}</div></div>`).join("");
+  $("#pg").innerHTML=P.map((p,i)=>`<article class="pj rv"><div class="pi"><span>${p.y} · ${p.r}</span><b>0${i+1}</b></div><div class="pb"><h3>${p.t[L]}</h3><p>${p.d[L]}</p><button data-i="${i}">${UI.vd[L]}</button></div></article>`).join("");
+  $$(".pb button").forEach(b=>b.onclick=()=>{const p=P[b.dataset.i];$("#mdc").innerHTML=`<div class="y" style="font-size:.7rem;color:var(--mu)">${p.y} · ${p.r}</div><h3 style="font-size:1.3rem;margin:.3rem 0 .8rem">${p.t[L]}</h3><p style="font-size:.88rem;color:var(--mu)">${p.d[L]}</p><div class="tg"><span>PT Artha Telekomindo</span><span>SCBD Data Center</span></div>`;$("#md").classList.add("on")});
+  const n=new Date(),a=n>=new Date("2026-08-13")&&n<=new Date("2027-08-12T23:59:59");
+  $("#cr").innerHTML=`<div class="cd"><div class="y">${UI.valid[L]}${a?" · ✓":""}</div><h3>TIA-942-C-2024 Rated-3</h3><div class="c">Design Documents</div><ul><li>${L?"Design contributor, SCBD Data Center of PT Artha Telekomindo. Scope: Architecture, Telecom, Electrical, Mechanical.":"Kontributor desain, SCBD Data Center PT Artha Telekomindo. Lingkup: Architecture, Telecom, Electrical, Mechanical."}</li><li>No. TIA942ID260813002 · EPI Certification Pte Ltd.</li></ul></div><div class="cd"><div class="y">${L?"EDUCATION":"PENDIDIKAN"}</div><h3>${L?"B.Sc. Information Systems":"S1 Sistem Informasi"}</h3><div class="c">Universitas Terbuka · ${L?"Jan 2024 – Present":"Jan 2024 – Sekarang"}</div><h3 style="margin-top:1rem">${L?"Computer and Network Engineering":"Teknik Komputer dan Jaringan"}</h3><div class="c">SMK Wikrama Bogor · 2015 – 2018</div></div>`;
+  const r=(R[0].join("  •  ")+"  •  ");$("#m1").textContent=(UI.hi[L]+" Ihsan  •  ").repeat(8);$("#m2").textContent=r.repeat(4);
+  $("#qs").innerHTML=(L?["Experience","Projects","Skills","Contact"]:["Pengalaman","Proyek","Keahlian","Kontak"]).map(q=>`<button>${q}</button>`).join("");
+  $$("#qs button").forEach(b=>b.onclick=()=>ask(b.textContent));
+  if(!$("#ms").children.length)bot(UI.hello[L]);
+  $$(".rv").forEach(e=>io.observe(e));
+}
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.12});
+$("#lb").onclick=()=>{L=1-L;try{localStorage.setItem("cvL",L)}catch(e){}render()};
+$("#tb").onclick=()=>{TH=TH=="dark"?"light":"dark";try{localStorage.setItem("cvT",TH)}catch(e){}render()};
+$("#md").onclick=e=>{if(e.target.id=="md"||e.target.className=="x")$("#md").classList.remove("on")};
+addEventListener("keydown",e=>{if(e.key=="Escape"){$("#md").classList.remove("on");$("#ch").classList.remove("on")}});
+let wi=0,ci=0,del=0;(function ty(){const w=["Data Center Project Engineer","Network Engineer"][wi];ci+=del?-1:1;$("#ty").textContent=w.slice(0,ci);let t=del?35:70;if(!del&&ci==w.length){del=1;t=1500}else if(del&&ci==0){del=0;wi=1-wi;t=400}setTimeout(ty,t)})();
+$("#fm").onsubmit=e=>{e.preventDefault();location.href="mailto:isannica@gmail.com?subject="+encodeURIComponent("Portfolio — "+$("#fn").value)+"&body="+encodeURIComponent($("#ft").value+"\n\n"+$("#fn").value+" ("+$("#fe").value+")")};
+$("#fab").onclick=()=>$("#ch").classList.toggle("on");$("#cx").onclick=()=>$("#ch").classList.remove("on");
+function bot(t){const d=document.createElement("div");d.className="m";d.textContent=t;$("#ms").appendChild(d);$("#ms").scrollTop=1e5}
+function user(t){const d=document.createElement("div");d.className="m u";d.textContent=t;$("#ms").appendChild(d);$("#ms").scrollTop=1e5}
+const KB=[
+[/pengalaman|experience|kerja|work|career|karier/i,["Ihsan adalah Project Engineer Data Center di PT Artha Telekomindo sejak Nov 2023. Sebelumnya Network Engineer di perusahaan yang sama (Sep 2019 – Okt 2023) dan di PT Fiber Networks Indonesia (Nov 2018 – Mei 2019).","Ihsan has been a Data Center Project Engineer at PT Artha Telekomindo since Nov 2023. Before that he was a Network Engineer at the same company (Sep 2019 – Oct 2023) and at PT Fiber Networks Indonesia (Nov 2018 – May 2019)."]],
+[/proyek|project|ekspansi|expansion|backbone|rack|colocation|pelanggan|customer/i,["Proyek: Backbone FO (PM, 2026), Ekspansi Lantai 6 (PIC, 2025; Fitout, M&E, CCTV, FSS), Ekspansi Data Hall 2 (PIC, 2024), pengadaan 30 rack 45U dan 40 RPDU, serta implementasi colocation untuk 17 pelanggan (2 cage, 24 full rack, 1½ rack).","Projects: FO Backbone (PM, 2026), 6th-Floor Expansion (PIC, 2025; Fitout, M&E, CCTV, FSS), Data Hall 2 Expansion (PIC, 2024), procurement of 30 45U racks and 40 RPDU, and colocation for 17 customers (2 cages, 24 full racks, 1½ racks)."]],
+[/skill|keahlian|bisa|tools|autocad|boq/i,["Keahlian: colocation & cross-connect, rack planning, patching MMR, konfigurasi switch, splicing fiber optik, AutoCAD (layout & SLD), BOQ, RFQ/tender vendor, aanwijzing, UPS dan HSSD.","Skills: colocation & cross-connect, rack planning, MMR patching, switch configuration, fiber optic splicing, AutoCAD (layout & SLD), BOQ, RFQ/vendor tendering, aanwijzing, UPS and HSSD."]],
+[/sertifi|certif|tia|rated/i,["Ihsan kontributor desain data center SCBD yang tersertifikasi TIA-942-C-2024 Rated-3 (No. TIA942ID260813002, berlaku 13 Agt 2026 – 12 Agt 2027, diterbitkan EPI Certification Pte Ltd).","Ihsan contributed to the design of the SCBD data center certified to TIA-942-C-2024 Rated-3 (No. TIA942ID260813002, valid 13 Aug 2026 – 12 Aug 2027, issued by EPI Certification Pte Ltd)."]],
+[/pendidikan|education|kuliah|sekolah|universitas|smk/i,["S1 Sistem Informasi, Universitas Terbuka (Jan 2024 – sekarang) dan Teknik Komputer dan Jaringan di SMK Wikrama Bogor (2015 – 2018).","B.Sc. Information Systems at Universitas Terbuka (Jan 2024 – present) and Computer and Network Engineering at SMK Wikrama Bogor (2015 – 2018)."]],
+[/kontak|contact|email|telepon|phone|wa|whatsapp|hubungi|lokasi|location/i,["Kontak: WhatsApp/telepon 083819091201, email isannica@gmail.com, berlokasi di Jakarta. Atau pakai form di bagian Contacts.","Contact: WhatsApp/phone 083819091201, email isannica@gmail.com, based in Jakarta. Or use the form in the Contacts section."]],
+[/siapa|who|ihsan|about|tentang/i,["Ihsan Nurrochman adalah Data Center Project Engineer dengan pengalaman lebih dari 7 tahun di jaringan dan infrastruktur data center, menangani proyek dari ujung ke ujung.","Ihsan Nurrochman is a Data Center Project Engineer with 7+ years in networking and data center infrastructure, managing projects end to end."]]];
+function ask(q){q=q.trim();if(!q)return;user(q);const t=document.createElement("div");t.className="m t";t.textContent="•••";$("#ms").appendChild(t);$("#ms").scrollTop=1e5;
+  setTimeout(()=>{t.remove();const k=KB.find(x=>x[0].test(q));bot(k?k[1][L]:(L?"I can answer about experience, projects, skills, certification, education, or contact. Try one of those!":"Saya bisa menjawab soal pengalaman, proyek, keahlian, sertifikasi, pendidikan, atau kontak. Coba salah satunya!"))},800)}
+$("#cf").onsubmit=e=>{e.preventDefault();ask($("#ci").value);$("#ci").value=""};
+$("#p2").src=$("#p1").src;render();
+addEventListener("load",()=>setTimeout(()=>$("#ld").classList.add("off"),1500));
+const secs=$$("section[id]"),lk=$$(".lk a");setTimeout(()=>dispatchEvent(new Event("scroll")),0);
+addEventListener("scroll",()=>{let c="home";secs.forEach(s=>{if(scrollY>=s.offsetTop-200)c=s.id});c=c=="skills"?"exp":c=="cred"?"proj":c;lk.forEach(a=>a.classList.toggle("on",a.getAttribute("href")=="#"+c))});
 </script>
 </body>
 </html>
