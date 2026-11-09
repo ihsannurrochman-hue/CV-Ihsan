@@ -55,7 +55,7 @@ section{padding:7rem 4%;max-width:1150px;margin:0 auto}
 .sk{display:grid;grid-template-columns:.8fr 2fr;gap:2rem;padding:2rem 0;border-top:1px solid var(--ln)}.sk h3{font-size:1.05rem}.sk p{font-size:.8rem;color:var(--mu)}
 .tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:.8rem}
 .tile{border:1px solid var(--ln);border-radius:14px;padding:1rem .6rem;text-align:center;font-size:.76rem;font-weight:500;transition:.25s;background:var(--card)}
-.tile:hover{transform:translateY(-4px);box-shadow:var(--sh);border-color:var(--ink)}.tile i{font-style:normal;display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--bg2);margin:0 auto .5rem;font-weight:700}
+.tile:hover{transform:translateY(-4px);box-shadow:var(--sh);border-color:var(--ink)}.tile i svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}.tile:hover i{background:var(--ink);color:var(--inv)}.tile i{transition:.25s;font-style:normal;display:grid;place-items:center;width:42px;height:42px;border-radius:50%;background:var(--bg2);margin:0 auto .6rem;font-weight:700}
 .pg{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:1.4rem}
 .pj{background:var(--card);border:1px solid var(--ln);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;transition:.3s}.pj:hover{transform:translateY(-6px);box-shadow:var(--sh);border-color:var(--ink)}
 .pi{height:150px;background:linear-gradient(135deg,var(--ink),#4b5563);color:var(--inv);display:flex;align-items:flex-end;justify-content:space-between;padding:1rem 1.3rem;font-size:.7rem;letter-spacing:.15em}.pi b{font-size:3rem;line-height:.9;opacity:.35;letter-spacing:-.05em}
@@ -217,6 +217,36 @@ const S=[
 [["Proyek & Pengadaan","Projects & Procurement"],["Dari RFQ hingga kickoff.","From RFQ to kickoff."],["RFQ","Vendor tendering","Aanwijzing","Kickoff"]],
 [["Infrastruktur","Infrastructure"],["Daya dan proteksi kebakaran.","Power and fire protection."],["UPS","HSSD","Power upgrades"]]];
 const R=[["Data Center Project Engineer","Network Engineer","Colocation","TIA-942 Rated-3"]];
+const IC={
+srv:'<rect x="3" y="3" width="18" height="7" rx="1.5"/><rect x="3" y="14" width="18" height="7" rx="1.5"/><path d="M7 6.5h.01M7 17.5h.01"/>',
+lnk:'<path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/>',
+grd:'<rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18"/>',
+pch:'<path d="M3 5h7v5H3zM14 14h7v5h-7zM10 7.5h2a2 2 0 0 1 2 2V14"/>',
+box:'<path d="M21 8l-9-5-9 5v8l9 5 9-5zM3 8l9 5 9-5M12 13v8"/>',
+clp:'<rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4h6v3H9zM9 14l2 2 4-4"/>',
+net:'<rect x="2" y="14" width="20" height="7" rx="2"/><path d="M6 17.5h.01M10 17.5h.01M14 17.5h.01M12 14V9M12 9H6V5M12 9h6V5"/>',
+rtr:'<rect x="3" y="14" width="18" height="6" rx="2"/><path d="M7 17h.01M11 17h.01M8 14L6 7M16 14l2-7"/>',
+plg:'<path d="M9 2v5M15 2v5M6 7h12v4a6 6 0 0 1-12 0zM12 17v5"/>',
+spl:'<path d="M2 12h7M15 12h7"/><rect x="9" y="9" width="6" height="6" rx="1"/>',
+wif:'<path d="M5 12.5a10 10 0 0 1 14 0M8.5 16a5 5 0 0 1 7 0M12 19.5h.01"/>',
+swp:'<path d="M7 7h12l-3-3M17 17H5l3 3"/>',
+gau:'<path d="M3.3 17a10 10 0 1 1 17.4 0M12 14l4-4"/>',
+act:'<path d="M3 12h4l2-6 4 12 2-6h6"/>',
+otd:'<path d="M3 17h4l2-9 3 12 2-6h7"/>',
+rul:'<path d="M3 17L17 3l4 4L7 21zM8 12l2 2M11 9l2 2M14 6l2 2"/>',
+tre:'<circle cx="12" cy="5" r="2"/><circle cx="6" cy="19" r="2"/><circle cx="18" cy="19" r="2"/><path d="M12 7v5M12 12H6v5M12 12h6v5"/>',
+lst:'<path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/>',
+doc:'<path d="M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8zM14 3v5h5M9 13h6M9 17h6"/>',
+mail:'<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/>',
+usr:'<circle cx="9" cy="8" r="3"/><path d="M3 20a6 6 0 0 1 12 0M16 5a3 3 0 0 1 0 6M18 20a5 5 0 0 0-3-4.6"/>',
+mgp:'<path d="M3 11v2a1 1 0 0 0 1 1h3l8 4V6L7 10H4a1 1 0 0 0-1 1zM19 9a4 4 0 0 1 0 6"/>',
+flg:'<path d="M5 21V4M5 4h11l-2 4 2 4H5"/>',
+bat:'<rect x="2" y="8" width="18" height="9" rx="2"/><path d="M22 11v3M6 12.5h6"/>',
+fir:'<path d="M12 22a6 6 0 0 0 6-6c0-4-3-6-4-10-3 2-4 4-4 6-1-1-2-2-2-4-2 2-2 5-2 8a6 6 0 0 0 6 6z"/>',
+zap:'<path d="M13 2L4 14h7l-1 8 9-12h-7z"/>',
+dot:'<circle cx="12" cy="12" r="3"/>'};
+const TI={"Colocation":"srv","Cross-connect":"lnk","Rack planning":"grd","MMR patching":"pch","Asset management":"box","Handover":"clp","Switch config":"net","MikroTik":"rtr","Network cabling":"plg","Fiber splicing":"spl","ONT setup":"wif","iPerf":"swp","Speedtest":"gau","BERT test":"act","OTDR":"otd","AutoCAD":"rul","SLD":"tre","BOQ":"lst","Tech docs":"doc","RFQ":"mail","Vendor tendering":"usr","Aanwijzing":"mgp","Kickoff":"flg","UPS":"bat","HSSD":"fir","Power upgrades":"zap"};
+const ico=n=>'<svg viewBox="0 0 24 24" aria-hidden="true">'+(IC[TI[n]]||IC.dot)+'</svg>';
 let L=0,TH="light";try{L=+localStorage.getItem("cvL")||0;TH=localStorage.getItem("cvT")||"light"}catch(e){}
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)],pdf=["CV_Ihsan_Nurrochman_ID.pdf","CV_Ihsan_Nurrochman_EN.pdf"];
 function render(){
@@ -224,7 +254,7 @@ function render(){
   $$("[data-k]").forEach(e=>e.textContent=UI[e.dataset.k][L]);
   $("#dl").href=$("#dl2").href=pdf[L];$("#dl").setAttribute("download",pdf[L]);$("#dl2").setAttribute("download",pdf[L]);$("#dl2t").textContent=UI.dl[L]+" ("+(L?"EN":"ID")+")";$("#ci").placeholder=UI.ask[L];
   $("#tl").innerHTML=J.map(j=>`<article class="it rv"><div class="cd"><div class="y">${j.y[L]}</div><h3>${j.t[L]}</h3><div class="c">${j.c}</div><ul>${j.b.map(x=>`<li>${x[L]?`<b>${x[L]}:</b> `:""}${x[2+L]}</li>`).join("")}</ul><div class="tg">${j.g.map(g=>`<span>${g}</span>`).join("")}</div></div></article>`).join("");
-  $("#sk").innerHTML=S.map(s=>`<div class="sk rv"><div><h3>${s[0][L]}</h3><p>${s[1][L]}</p></div><div class="tiles">${s[2].map(t=>`<div class="tile"><i>${t[0]}</i>${t}</div>`).join("")}</div></div>`).join("");
+  $("#sk").innerHTML=S.map(s=>`<div class="sk rv"><div><h3>${s[0][L]}</h3><p>${s[1][L]}</p></div><div class="tiles">${s[2].map(t=>`<div class="tile"><i>${ico(t)}</i>${t}</div>`).join("")}</div></div>`).join("");
   $("#pg").innerHTML=P.map((p,i)=>`<article class="pj rv"><div class="pi"><span>${p.y} · ${p.r}</span><b>0${i+1}</b></div><div class="pb"><h3>${p.t[L]}</h3><p>${p.d[L]}</p><button data-i="${i}">${UI.vd[L]}</button></div></article>`).join("");
   $$(".pb button").forEach(b=>b.onclick=()=>{const p=P[b.dataset.i];$("#md .cd").style.maxWidth="";$("#mdc").innerHTML=`<div class="y" style="font-size:.7rem;color:var(--mu)">${p.y} · ${p.r}</div><h3 style="font-size:1.3rem;margin:.3rem 0 .8rem">${p.t[L]}</h3><p style="font-size:.88rem;color:var(--mu)">${p.d[L]}</p><div class="tg"><span>PT Artha Telekomindo</span><span>SCBD Data Center</span></div>`;$("#md").classList.add("on")});
   const n=new Date(),a=n>=new Date("2026-08-13")&&n<=new Date("2027-08-12T23:59:59");
